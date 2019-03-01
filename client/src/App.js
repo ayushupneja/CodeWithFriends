@@ -4,8 +4,7 @@ import Registration from './Registration';
 import Login from './Login';
 import TextField from './TextField';
 import ProblemList from './ProblemList';
-
-// Todo: collapse navbar into a single component. Probably have to do stuff with props for that
+import Navbar from './Navbar';
 
 class App extends Component {
   constructor(props) {
@@ -16,34 +15,14 @@ class App extends Component {
       token : ''
     }
 
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleCompile = this.handleCompile.bind(this);
-    this.handleLogIn = this.handleLogIn.bind(this);
-    this.handleHome = this.handleHome.bind(this);
     this.handleEditor = this.handleEditor.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleProblems = this.handleProblems.bind(this);
-  }
-  
-  handleSignUp() {
-    this.setState({view : 'signing_up'});
-  }
-
-  handleCompile() {
-    alert("Ur mom gay!");
-  }
-
-  handleLogIn() {
-    this.setState({view : 'logging_in'});
-  }
-
-  handleHome() {
-    this.setState({view : 'home'});
+    this.changeView = this.changeView.bind(this);
+    this.renderBody = this.renderBody.bind(this);
   }
 
   handleEditor() {
-    console.log("yo");
     this.setState({view : 'editor'});
   }
 
@@ -53,6 +32,10 @@ class App extends Component {
 
   handleToken(mytoken) {
     this.setState({token : mytoken});
+  }
+
+  changeView(newView) {
+    this.setState({ view: newView});
   }
 
   handleLogout() {
@@ -76,19 +59,45 @@ class App extends Component {
       })
   }
 
-  handleProblems() {
-    this.setState({ view : 'problems' });
+  renderBody() {
+    if (this.state.view === 'home')
+      return (
+        <div id="welcome">
+          Welcome, idiot
+        </div>
+      );
+    if (this.state.view === 'signing_up')
+      return (
+        <Registration/>
+      );
+    if (this.state.view === 'logging_in')
+      return (
+        <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)}/>
+      );
+    if (this.state.view === 'editor')
+      return (
+        <TextField username={this.state.username}/>
+      );
+    if (this.state.view === 'problems')
+      return (
+        <ProblemList/>
+      );
   }
 
+  render() {
+    return (
+      <React.Fragment>
+        <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
+        {this.renderBody()}
+      </React.Fragment>
+    )
+  }
+  /*
   render() {
     if (this.state.view === 'home') {
       return (
         <React.Fragment>
-          <div id="navbar">
-            <button id="home" onClick={this.handleHome}>Home</button>
-            <button id="log_in" onClick={this.handleLogIn}>Log In</button>
-            <button id="sign_up" onClick={this.handleSignUp}>Sign Up</button>
-          </div>
+          <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
           <div id="welcome">
             Welcome, idiot
           </div>
@@ -97,22 +106,14 @@ class App extends Component {
     } else if (this.state.view === 'signing_up') {
         return (
           <React.Fragment>
-            <div id="navbar">
-              <button id="home" onClick={this.handleHome}>Home</button>
-              <button id="log_in" onClick={this.handleLogIn}>Log In</button>
-              <button id="sign_up" onClick={this.handleSignUp}>Sign Up</button>
-            </div>
+            <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
             <Registration/>
           </React.Fragment>
         );
      } else if (this.state.view === 'logging_in') {
        return (
          <React.Fragment>
-           <div id="navbar">
-            <button id="home" onClick={this.handleHome}>Home</button>
-            <button id="log_in" onClick={this.handleLogIn}>Log In</button>
-            <button id="sign_up" onClick={this.handleSignUp}>Sign Up</button>
-           </div>
+           <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
            <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)}/>
          </React.Fragment>
        )
@@ -120,29 +121,20 @@ class App extends Component {
        console.log(this.state.token);
        return (
         <React.Fragment>
-          <div id="navbar">
-            <button id="editor" onClick={this.handleEditor}>Editor</button>
-            <button id="problems" onClick={this.handleProblems}>Problems</button>
-            <button id="user">{this.state.username}</button>
-            <button id="logout" onClick={this.handleLogout}>Log Out</button>
-          </div>
+          <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
           <TextField username={this.state.username}/>
         </React.Fragment>
        );
      } else if (this.state.view === 'problems') {
         return (
           <React.Fragment>
-            <div id="navbar">
-              <button id="editor" onClick={this.handleEditor}>Editor</button>
-              <button id="problems" onClick={this.handleProblems}>Problems</button>
-              <button id="user">{this.state.username}</button>
-              <button id="logout" onClick={this.handleLogout}>Log Out</button>
-            </div>
+             <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
             <ProblemList/>
           </React.Fragment>
         );
      }
   }
+  */
 }
 
 
