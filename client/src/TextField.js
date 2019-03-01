@@ -4,12 +4,13 @@ class TextField extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            text: 'int main(){}',
+            language: 'c',
+            text: 'int main() {}',
             output: ''
         }
-        this.test = this.test.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
+        this.changeLanguage = this.changeLanguage.bind(this);
     }
 
     componentDidMount() {
@@ -24,10 +25,6 @@ class TextField extends Component {
         this.setState({text: document.getElementById('TextField').innerText});
     }
 
-    test() {
-        alert(this.state.text);
-    }
-
     handleSubmission() {
         fetch('http://localhost:5000/submissions', {
             method: 'POST',
@@ -37,7 +34,8 @@ class TextField extends Component {
             },
             body: JSON.stringify({
                 username: this.props.username,
-                submission: this.state.text
+                submission: this.state.text,
+                language: this.state.language
             }),
             mode: 'cors',
         })
@@ -52,10 +50,19 @@ class TextField extends Component {
             .catch(() => alert('uh oh'))
     }
 
+    changeLanguage(newLanguage) {
+        this.setState({language : newLanguage})
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div id="TextField_And_Button">
+                    <div id="Languages">
+                        <button className="LanguageButton" onClick={() => this.changeLanguage('c')}>C</button>
+                        <button className="LanguageButton" onClick={() => this.changeLanguage('cpp')}>C++</button>
+                        <button className="LanguageButton" onClick={() => this.changeLanguage('py')}>Python</button>
+                    </div>
                     <div id="TextField" contentEditable="true" spellCheck="false">
                     </div>
                     <div id="OutputField">
