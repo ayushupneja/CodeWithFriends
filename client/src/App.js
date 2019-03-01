@@ -124,7 +124,7 @@ class App extends Component {
             <button id="user">{this.state.username}</button>
             <button id="logout" onClick={this.handleLogout}>Log Out</button>
           </div>
-          <TextField/>
+          <TextField username={this.state.username}/>
         </React.Fragment>
        );
      } else if (this.state.view === 'problems') {

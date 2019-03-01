@@ -24,7 +24,7 @@ class ProblemList extends Component {
                     .then( body => this.setState({ problems: body.problems, doneLoading: true }));
             },
             (error) => {
-                alert('Something went wrong sorry :(');
+                alert(error);
             })
     }
 

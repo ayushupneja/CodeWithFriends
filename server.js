@@ -5,7 +5,8 @@ var cors = require('cors');
 var userController = require('./controllers/user');
 var passport = require('passport');
 var authController = require('./controllers/auth');
-var problemController = require('./controllers/problems')
+var problemController = require('./controllers/problems');
+var submissionController = require('./controllers/submissions');
 
 mongoose.connect('mongodb://localhost:27017/code_together', {useNewUrlParser : true, useFindAndModify: false, useCreateIndex: true});
 
@@ -44,6 +45,11 @@ router.route('/problems')
     .post(problemController.postProblem)
     .get(problemController.getProblems)
 
+router.route('/submissions')
+    .post(submissionController.test)
+    
 app.use('',router);
+
+
 
 app.listen(5000);
