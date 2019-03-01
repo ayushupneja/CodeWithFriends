@@ -20,7 +20,7 @@ class App extends Component {
     this.handleCompile = this.handleCompile.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleHome = this.handleHome.bind(this);
-    this.handleDashboard = this.handleDashboard.bind(this);
+    this.handleEditor = this.handleEditor.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleProblems = this.handleProblems.bind(this);
@@ -42,8 +42,9 @@ class App extends Component {
     this.setState({view : 'home'});
   }
 
-  handleDashboard() {
-    this.setState({view : 'dashboard'});
+  handleEditor() {
+    console.log("yo");
+    this.setState({view : 'editor'});
   }
 
   handleUsername(name) {
@@ -112,14 +113,15 @@ class App extends Component {
             <button id="log_in" onClick={this.handleLogIn}>Log In</button>
             <button id="sign_up" onClick={this.handleSignUp}>Sign Up</button>
            </div>
-           <Login view={this.handleDashboard.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)}/>
+           <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)}/>
          </React.Fragment>
        )
-     } else if (this.state.view === 'dashboard') {
+     } else if (this.state.view === 'editor') {
        console.log(this.state.token);
        return (
         <React.Fragment>
           <div id="navbar">
+            <button id="editor" onClick={this.handleEditor}>Editor</button>
             <button id="problems" onClick={this.handleProblems}>Problems</button>
             <button id="user">{this.state.username}</button>
             <button id="logout" onClick={this.handleLogout}>Log Out</button>
@@ -131,6 +133,7 @@ class App extends Component {
         return (
           <React.Fragment>
             <div id="navbar">
+              <button id="editor" onClick={this.handleEditor}>Editor</button>
               <button id="problems" onClick={this.handleProblems}>Problems</button>
               <button id="user">{this.state.username}</button>
               <button id="logout" onClick={this.handleLogout}>Log Out</button>

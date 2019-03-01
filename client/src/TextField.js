@@ -59,6 +59,8 @@ class TextField extends Component {
                     <div id="TextField" contentEditable="true" spellCheck="false">
                     </div>
                     <div id="OutputField">
+                        Output:
+                        <br/>
                         {this.state.output}
                     </div>
                     <button id="Run_Button" onClick={this.handleSubmission}>Run</button>
