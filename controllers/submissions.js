@@ -30,17 +30,17 @@ compileCode = function(identifier,filename,res,language) {
     if (language === 'cpp')
         compileInstruction = 'g++ -o submissions/' + identifier + ' ' + 'submissions/' + filename
     if (language === 'py')
-        compileInstruction = 'python3 ' + filename
+        compileInstruction = 'python3 submissions/' + filename
     
-    cp.execSync(compileInstruction, (e,stdout,stderr) => {
-        if (e instanceof Error) {
-            res.send(e);
-        }
-        console.log('stdout ',stdout);
-        console.log('stderr ',stderr);
-    });
-    cp.execSync('rm submissions/' + filename);
     if (language === 'c' || language === 'cpp') {
+        cp.execSync(compileInstruction, (e,stdout,stderr) => {
+            if (e instanceof Error) {
+                res.send(e);
+            }
+            console.log('stdout ',stdout);
+            console.log('stderr ',stderr);
+        });
+        cp.execSync('rm submissions/' + filename);
         cp.execFile('submissions/' + identifier, (e, stdout, stderr) => {
             if (e instanceof Error) {
                 res.send(e);
@@ -52,6 +52,20 @@ compileCode = function(identifier,filename,res,language) {
             })
         });
         cp.execSync('rm submissions/' + identifier);
+    }
+
+    if (language === 'py') {
+        cp.exec('python3 submissions/' + filename, (e, stdout, stderr) => {
+            if (e instanceof Error) {
+                res.send(e);
+            }
+
+            console.log('stdout ', stdout);
+            console.log('stderr ',stderr);
+            res.json({
+                output: stdout
+            })
+        });
     }
     /*
     cp.execSync('gcc -o submissions/' + identifier + ' ' +  'submissions/' + filename, (e, stdout, stderr) => {
