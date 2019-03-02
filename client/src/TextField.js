@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+const activeButton = {
+    border: 'solid',
+    borderWidth: '1px',
+    borderColor: 'black'
+  };
+
 class TextField extends Component {
     constructor(props) {
         super(props);
@@ -59,9 +65,9 @@ class TextField extends Component {
             <React.Fragment>
                 <div id="TextField_And_Button">
                     <div id="Languages">
-                        <button className="LanguageButton" onClick={() => this.changeLanguage('c')}>C</button>
-                        <button className="LanguageButton" onClick={() => this.changeLanguage('cpp')}>C++</button>
-                        <button className="LanguageButton" onClick={() => this.changeLanguage('py')}>Python</button>
+                        <button className="LanguageButton" style={this.state.language == 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</button>
+                        <button className="LanguageButton" style={this.state.language == 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</button>
+                        <button className="LanguageButton" style={this.state.language == 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</button>
                     </div>
                     <div id="TextField" contentEditable="true" spellCheck="false">
                     </div>
