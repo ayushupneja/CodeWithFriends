@@ -6,6 +6,15 @@ Ayush loves to code. However, as a social person, he finds coding by himself to 
 * Ability to post new questions to board of questions.
 * Ability to write code in a text field and compile the code in C, C++, Python and view stdout.
 
+Handles failed signup due to username being taken  
+![image1](./Images/failed_signup.png)
+
+Handles failed login due to wrong password  
+![image2](./Images/failed_login.png)
+
+Editor Screen  
+![image3](./Images/PreSprint1Screenshot.png)
+
 # Sprint 1
 * Handle compilation errors and return the relevant error message to user
 * Improve logout feature to automatically log out after X time or when the window/browser is closed
@@ -15,6 +24,7 @@ Ayush loves to code. However, as a social person, he finds coding by himself to 
 * Start working to check user code vs. test cases for specific coding problem
 
 # Architecture
+![image4](./Images/Architecture.png)
 
 # Technologies
 MERN Stack
@@ -25,3 +35,5 @@ MERN Stack
 
 Chose to use this stack because it is easy to use and learn and we can take advantage of lots of libraries. Express makes handling requests really easy. 
 
+# Team Members
+Quinn Meurer and Ayush Upneja
