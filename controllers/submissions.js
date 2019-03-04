@@ -32,41 +32,59 @@ compileCode = function(identifier,filename,res,language) {
     if (language === 'py')
         compileInstruction = 'python3 submissions/' + filename
     
-    if (language === 'c' || language === 'cpp') {
-        cp.execSync(compileInstruction, (e,stdout,stderr) => {
-            if (e instanceof Error) {
-                res.send(e);
-            }
-            console.log('stdout ',stdout);
-            console.log('stderr ',stderr);
-        });
-        cp.execSync('rm submissions/' + filename);
-        cp.execFile('submissions/' + identifier, (e, stdout, stderr) => {
-            if (e instanceof Error) {
-                res.send(e);
-            }
-            console.log('stdout ',stdout);
-            console.log('stderr ',stderr);
-            res.json({
-                output: stdout
-            })
-        });
-        cp.execSync('rm submissions/' + identifier);
-    }
+    try {
+        if (language === 'c' || language === 'cpp') {
+            cp.execSync(compileInstruction, (e,stdout,stderr) => {
+                if (e instanceof Error) {
+                    res.send(e);
+                }
+                console.log('stdout ',stdout);
+                console.log('stderr ',stderr);
+            });
+            cp.execSync('rm submissions/' + filename);
+            cp.execFile('submissions/' + identifier, (e, stdout, stderr) => {
+                if (e instanceof Error) {
+                    res.send(e);
+                }
+                console.log('stdout ',stdout);
+                console.log('stderr ',stderr);
+                res.json({
+                    output: stdout
+                })
+            });
+            cp.execSync('rm submissions/' + identifier);
+        }
 
-    if (language === 'py') {
-        cp.exec('python3 submissions/' + filename, (e, stdout, stderr) => {
-            if (e instanceof Error) {
-                res.send(e);
-            }
+        if (language === 'py') {
+            cp.exec('python3 submissions/' + filename, (e, stdout, stderr) => {
+                /*
+                if (e instanceof Error) {
+                    res.send(e);
+                }
+                */
 
-            console.log('stdout ', stdout);
-            console.log('stderr ',stderr);
-            res.json({
-                output: stdout
-            })
-        });
+                console.log('stdout ', stdout);
+                console.log('stderr ',stderr);
+                if (e instanceof Error) {
+                    res.json({
+                        output: stderr
+                    })
+                } else {
+                    res.json({
+                        output: stdout
+                    })
+                }
+            });
+        }
     }
+    catch(error) {
+        console.log('bruh')
+        console.log(Object.keys(error));
+        res.json({
+            output: JSON.stringify(error.stderr.toString('utf8'))
+        })
+    }
+}
     /*
     cp.execSync('gcc -o submissions/' + identifier + ' ' +  'submissions/' + filename, (e, stdout, stderr) => {
         if (e instanceof Error) {
@@ -88,7 +106,7 @@ compileCode = function(identifier,filename,res,language) {
     });
     cp.execSync('rm submissions/' + identifier);
     */
-}
+
 
 
 // Have to set up queue here later for backlogged submissions
