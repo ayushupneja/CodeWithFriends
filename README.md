@@ -6,13 +6,13 @@ Ayush loves to code. However, as a social person, he finds coding by himself to 
 * Ability to post new questions to board of questions.
 * Ability to write code in a text field and compile the code in C, C++, Python and view stdout.
 
-Handles failed signup due to username being taken
+Handles failed signup due to username being taken  
 ![image1](./Images/failed_signup.png)
 
-Handles failed login due to wrong password
+Handles failed login due to wrong password  
 ![image2](./Images/failed_login.png)
 
-Editor Screen
+Editor Screen  
 ![image3](./Images/PreSprint1Screenshot.png)
 
 # Sprint 1
