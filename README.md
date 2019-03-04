@@ -16,7 +16,7 @@ Editor Screen
 ![image3](./Images/PreSprint1Screenshot.png)
 
 # Sprint 1
-* Handle compilation errors and return the relevant error message to user
+* ~~Handle compilation errors and return the relevant error message to user~~ Format compilation errors more readably
 * Improve logout feature to automatically log out after X time or when the window/browser is closed
 * Add approval functionality to user submitted problems so that admin has to approve it
 * Improve the user submitted code i.e. require test cases, detailed description, skeleton, etc.
