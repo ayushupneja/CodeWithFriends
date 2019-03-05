@@ -33,7 +33,7 @@ MERN Stack
 * React.js
 * Node.js
 
-Socket.io for real time communication between users
+Websockets for real time communication between users
 
 Chose to use this stack because it is easy to use and learn and we can take advantage of lots of libraries. Express makes handling requests really easy. 
 
