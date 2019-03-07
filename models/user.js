@@ -18,7 +18,7 @@ var UserSchema = new mongoose.Schema({
     },
     requests: {
         type: [{
-            username: String,
+            receiver: String,
             sender: String
         }],
         required: false,

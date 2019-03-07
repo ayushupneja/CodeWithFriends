@@ -92,8 +92,8 @@ class Friends extends Component {
                 <div id="Friends">
                     <h2>Incoming Friend Requests</h2>
                     {this.state.requests.map( (r,i) => {
-                        if (r.sender != this.props.username)
-                            return (<FriendRequest key={i} username={r.username}/>)
+                        if (r.sender !== this.props.username)
+                            return (<FriendRequest key={i} username={r.sender}/>)
                     })}
                     <h2>Friends</h2>
                 </div>

@@ -75,7 +75,7 @@ exports.addFriend = function(req,res) {
             else {
                 console.log('TESTING:',req.body.receiver, req.body.sender);
                 User.findOneAndUpdate({ username : req.body.receiver},
-                    {$push: {'requests': {username: req.body.sender, sender: req.body.sender}}},
+                    {$push: {'requests': {receiver: req.body.receiver, sender: req.body.sender}}},
                     {upsert : false},
                     function (err, user) {
                         if (err)
@@ -83,7 +83,7 @@ exports.addFriend = function(req,res) {
                     }
                 )
                 User.findOneAndUpdate({ username : req.body.sender},
-                    {$push: {'requests': {username: req.body.receiver, sender: req.body.sender}}},
+                    {$push: {'requests': {receiver: req.body.receiver, sender: req.body.sender}}},
                     {upsert : false},
                     function (err, user) {
                         if (err)
@@ -94,6 +94,28 @@ exports.addFriend = function(req,res) {
             }                
         })
 }
+
+ exports.acceptRequest = function(req, res) {
+     console.log(req.body.receiver, req.body.sender);
+     User.updateMany(
+         { requests: { $elemMatch: {receiver : req.body.receiver, sender : req.body.sender}}},
+         { $pull: {requests: {receive : req.body.receiver, sender: req.body.sender} }},
+         function (err, data) {
+             if (err)
+                res.send(err);
+            else if (data.length > 0) {
+                // Next step need to update friends list here
+                res.send(data);
+            }
+            else {
+                console.log('no data removed!');
+            }
+         }
+     )
+     
+
+
+ }
 /*
 exports.getFriends = function(req, res) {
     User.find(function(err,users) {

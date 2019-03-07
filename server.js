@@ -55,6 +55,9 @@ router.route('/addFriend')
     //.post(userController.addFriend, userController.addFriend2)
     //.get(userController.getFriends)
 
+router.route('/acceptRequest')
+    .post(userController.acceptRequest)
+
 router.route('/friendRequests*')
     .get(userController.getFriendRequests)
 
