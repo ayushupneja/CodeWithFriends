@@ -32,6 +32,94 @@ exports.getSessions = function(req, res) {
     });
 };
 
+exports.delete = function() {
+    User.remove({}, function(err) { 
+    console.log('collection removed') 
+ });
+}
+/*
+exports.addFriend = function(req, res) {
+    console.log("one");
+    User.findOneAndUpdate({ username: req.body.receiver},
+        {$push: {'requests': {username: req.body.sender, in_out: false}}},
+        {upsert : false, new : true},
+        function (err,model) {
+            if (err)
+                res.send(err);
+            else
+                res.send('think it worked');
+        }
+    )
+}
+
+exports.addFriend2 = function(req, res) {
+    console.log("two");
+    User.findOneAndUpdate({ username: req.body.sender},
+        {$push: {'requests': {username: req.body.receiver, in_out: true}}},
+        {upsert : false, new : true},
+        function (err,model) {
+            if (err)
+                res.send(err);
+            else
+                res.send('think it worked');
+        }
+    )
+}
+*/
+
+exports.addFriend = function(req,res) {
+    User.findOne({ username: req.body.receiver })
+        .then( name => {
+            if (name === null)
+                res.status(404).send({message: 'User not found!'});
+            else {
+                console.log('TESTING:',req.body.receiver, req.body.sender);
+                User.findOneAndUpdate({ username : req.body.receiver},
+                    {$push: {'requests': {username: req.body.sender, sender: req.body.sender}}},
+                    {upsert : false},
+                    function (err, user) {
+                        if (err)
+                            res.send(err);
+                    }
+                )
+                User.findOneAndUpdate({ username : req.body.sender},
+                    {$push: {'requests': {username: req.body.receiver, sender: req.body.sender}}},
+                    {upsert : false},
+                    function (err, user) {
+                        if (err)
+                            res.send(err);
+                    }
+                )
+                res.status(200).send({message: 'success...'});
+            }                
+        })
+}
+/*
+exports.getFriends = function(req, res) {
+    User.find(function(err,users) {
+        if (err)
+            res.send(err);
+        else
+            res.json({
+                users
+            });
+    });
+};
+*/
+exports.getFriendRequests = function(req, res) {
+    User.findOne({ username: req.url.substring(req.url.lastIndexOf('/') + 1,req.url.length) })
+        .then( user => {
+            if (user === null) {
+                res.status(404).send({message: 'Something went wrong sorry :('});
+            }
+            else {
+                var friendRequests = user.requests;
+                res.json({
+                    friendRequests
+                })
+            }
+        })
+}
 
 
 exports.logout = function(req, res) {

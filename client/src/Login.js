@@ -73,7 +73,7 @@ class Login extends Component {
         } else {
             return (
                  <div id="login">
-                    <p class="failtext">Login Failed. Try again</p>
+                    <p className="failtext">Login Failed. Try again</p>
                     <br/>
                     <form onSubmit={() => {return false;}}>
                         <p>Username:</p>

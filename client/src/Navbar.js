@@ -22,7 +22,7 @@ class Navbar extends Component {
             <div id="navbar">
                 <button id="editor" onClick={() => this.props.changeView('editor')}>Editor</button>
                 <button id="problems" onClick={() => this.props.changeView('problems')}>Problems</button>
-                <button id="user">{this.props.username}</button>
+                <button id="user" onClick={() => this.props.changeView('user_page')}>{this.props.username}</button>
                 <button id="logout" onClick={this.props.logout}>Log Out</button>
             </div>            
         )
@@ -35,7 +35,7 @@ class Navbar extends Component {
                     {this.renderPreLogin()}
                 </React.Fragment>
             );
-        } else if (this.props.view === 'editor' || this.props.view === 'problems') {
+        } else if (this.props.view === 'editor' || this.props.view === 'problems' || this.props.view === 'user_page') {
             return (
                 <React.Fragment>
                     {this.renderPostLogin()}

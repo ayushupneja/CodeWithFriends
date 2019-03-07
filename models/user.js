@@ -10,6 +10,19 @@ var UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    friends: {
+        type: [String],
+        required: false,
+        default: []
+    },
+    requests: {
+        type: [{
+            username: String,
+            sender: String
+        }],
+        required: false,
+        default: []
     }
 });
 

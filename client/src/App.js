@@ -5,6 +5,7 @@ import Login from './Login';
 import TextField from './TextField';
 import ProblemList from './ProblemList';
 import Navbar from './Navbar';
+import Friends from './Friends';
 
 class App extends Component {
   constructor(props) {
@@ -81,6 +82,10 @@ class App extends Component {
     if (this.state.view === 'problems')
       return (
         <ProblemList/>
+      );
+    if (this.state.view === 'user_page')
+      return (
+        <Friends username={this.state.username}/>
       );
   }
 
