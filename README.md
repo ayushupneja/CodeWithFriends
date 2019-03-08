@@ -42,3 +42,11 @@ Chose to use this stack because it is easy to use and learn and we can take adva
 
 # Team Members
 Quinn Meurer and Ayush Upneja
+
+# Try for yourself...
+* `git clone https://github.com/ec500-software-engineering/project-code_with_friends.git`  
+* Make sure you have `npm`, `node.js`, `mongoDB community edition` installed  
+* Navigate to top level directory and run `npm install`  
+* Navigate to /client and run `npm install`
+* In the top level directory run `node server`
+* In a new terminal in the /client directory run `npm start`
