@@ -17,11 +17,14 @@ Editor Screen
 
 # Sprint 1
 * ~~Handle compilation errors and return the relevant error message to user~~ Format compilation errors more readably
-* Improve logout feature to automatically log out after X time or when the window/browser is closed
+* Create and implement framework for friend system. Once we get this done we can begin working on creating 'rooms' aka websocket connections between users who are friends
+* Create websocket connection between users so that document can be modified in real time between users
+
+# Todo list for the future... maybe in sprint 2
 * Add approval functionality to user submitted problems so that admin has to approve it
 * Improve the user submitted code i.e. require test cases, detailed description, skeleton, etc.
-* Start working to allow multiple users can work in same notepad together
-* Start working to check user code vs. test cases for specific coding problem
+* Improve logout feature to automatically log out after X time or when the window/browser is closed
+* Check user code vs. test cases for specific coding problem
 
 # Architecture
 ![image4](./Images/Architecture.png)
