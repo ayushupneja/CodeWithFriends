@@ -101,14 +101,32 @@ exports.addFriend = function(req,res) {
          { requests: { $elemMatch: {receiver : req.body.receiver, sender : req.body.sender}}},
          { $pull: {requests: {receive : req.body.receiver, sender: req.body.sender} }},
          function (err, data) {
-             if (err)
+            console.log(data.n);
+            if (err) {
+                console.log("SHIT SHIT SHIT!");
                 res.send(err);
-            else if (data.length > 0) {
-                // Next step need to update friends list here
+            }
+            else if (data.n > 0) {
+                console.log("SHITSHIT!");
+                User.findOneAndUpdate({ username : req.body.receiver},
+                    {$push: {'friends': req.body.sender}},
+                    function(e) {
+                        if (e)
+                            res.send(e);
+                    }
+                )
+                User.findOneAndUpdate({ username : req.body.sender},
+                    {$push: {'friends' : req.body.receiver}},
+                    function(e) {
+                        if (e)
+                            res.send(e);
+                    }
+                )
+                console.log(data);
                 res.send(data);
             }
             else {
-                console.log('no data removed!');
+                res.status(404).send({message: 'could not find that request'});
             }
          }
      )

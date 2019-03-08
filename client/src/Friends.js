@@ -13,6 +13,7 @@ class Friends extends Component {
         this.handleRequest = this.handleRequest.bind(this);
         this.handleAddWhoChange = this.handleAddWhoChange.bind(this);
         this.fetchRequests = this.fetchRequests.bind(this);
+        this.handleRequestChange = this.handleRequestChange.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,10 @@ class Friends extends Component {
 
     handleAddWhoChange(event) {
         this.setState({addWho: event.target.value});
+    }
+
+    handleRequestChange(x) {
+        this.setState({requests: x});
     }
 
     /*
@@ -93,7 +98,7 @@ class Friends extends Component {
                     <h2>Incoming Friend Requests</h2>
                     {this.state.requests.map( (r,i) => {
                         if (r.sender !== this.props.username)
-                            return (<FriendRequest key={i} username={r.sender}/>)
+                            return (<FriendRequest key={i} myusername={this.props.username} username={r.sender} requests={this.state.requests} handler={() => this.handleRequestChange}/>)
                     })}
                     <h2>Friends</h2>
                 </div>
