@@ -161,6 +161,25 @@ exports.getFriendRequests = function(req, res) {
         })
 }
 
+exports.getFriends = function(req, res) {
+    User.findOne({ username: req.url.substring(req.url.lastIndexOf('/') + 1, req.url.length)},
+    function(err, user) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else if (user !== null){
+            var friends = user.friends;
+            console.log(friends);
+            res.json({
+                friends
+            })
+        } else {
+            res.status(404).send({message: 'Something went wrong :('});
+        }
+    })
+}
+
+
 
 exports.logout = function(req, res) {
     UserSession.deleteMany({ username: req.body.username }, function(err, session) {

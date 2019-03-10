@@ -38,10 +38,10 @@ router.route('/login')
 router.route('/logout')
     .delete(userController.logout)
 
-
+/*
 router.route('/test')
     .get(userController.delete)
-
+*/
 
 router.route('/problems')
     .post(problemController.postProblem)
@@ -60,6 +60,9 @@ router.route('/acceptRequest')
 
 router.route('/friendRequests*')
     .get(userController.getFriendRequests)
+
+router.route('/friends*')
+    .get(userController.getFriends)
 
 // Later will have to make this collections of users that are connected
 // For now we can just have one list
