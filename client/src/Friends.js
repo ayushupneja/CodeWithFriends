@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendRequest from './FriendRequest';
+import Friend from './Friend';
 
 class Friends extends Component {
     constructor(props) {
@@ -14,10 +15,13 @@ class Friends extends Component {
         this.handleAddWhoChange = this.handleAddWhoChange.bind(this);
         this.fetchRequests = this.fetchRequests.bind(this);
         this.handleRequestChange = this.handleRequestChange.bind(this);
+        this.handleFriendChange = this.handleFriendChange.bind(this);
+        this.fetchFriends = this.fetchFriends.bind(this);
     }
 
     componentDidMount() {
         this.fetchRequests();
+        this.fetchFriends();
     }
 
     handleRequest() {
@@ -46,11 +50,17 @@ class Friends extends Component {
     }
 
     handleAddWhoChange(event) {
+        console.log(this.state.friends);
         this.setState({addWho: event.target.value});
     }
 
     handleRequestChange(x) {
         this.setState({requests: x});
+    }
+
+    handleFriendChange(x) {
+        console.log("??????");
+        this.setState({friends: x});
     }
 
     /*
@@ -84,6 +94,22 @@ class Friends extends Component {
         .catch( (e) => console.log(e))
     }
 
+    fetchFriends() {
+        console.log('asdhfkjahsdjkflashdkljfhkjsadl');
+        fetch('http://localhost:5000/friends/' + this.props.username, {
+            method: 'GET',
+            mode: 'cors'
+        })
+        .then( (response) => {
+            response.json()
+            .then((friends) => {
+                console.log(friends.friends);
+                this.setState({friends : friends.friends});
+            })
+        })
+        .catch( (e) => console.log(e))
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -98,9 +124,12 @@ class Friends extends Component {
                     <h2>Incoming Friend Requests</h2>
                     {this.state.requests.map( (r,i) => {
                         if (r.sender !== this.props.username)
-                            return (<FriendRequest key={i} myusername={this.props.username} username={r.sender} requests={this.state.requests} handler={() => this.handleRequestChange}/>)
+                            return (<FriendRequest key={i} myusername={this.props.username} username={r.sender} requests={this.state.requests} handler={this.handleRequestChange} handler2={this.handleFriendChange}/>)
                     })}
                     <h2>Friends</h2>
+                    {this.state.friends.map( (f,i) => {
+                        return (<Friend key={i} friend={f}/>)
+                    })}
                 </div>
             </React.Fragment>
         )

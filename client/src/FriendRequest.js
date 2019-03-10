@@ -9,6 +9,7 @@ class FriendRequest extends Component {
         }
         this.acceptRequest = this.acceptRequest.bind(this);
         this.fetchRequests = this.fetchRequests.bind(this);
+        this.fetchFriends = this.fetchFriends.bind(this);
     }
 
     acceptRequest() {
@@ -42,15 +43,32 @@ class FriendRequest extends Component {
         .then( (response) => {
             response.json()
             .then((requests) => {
+                this.fetchFriends();
                 console.log(requests.friendRequests);
                 console.log('hello world');
-                this.props.handler(requests.friendRequests);
+                //this.props.handler(requests.friendRequests);
                 this.setState({deleted : true});
             })
         })
         .catch( (e) => console.log(e))
     }
 
+    fetchFriends() {
+        console.log('whats goin on');
+        fetch('http://localhost:5000/friends/' + this.props.username, {
+            method: 'GET',
+            mode: 'cors'
+        })
+        .then( (response) => {
+            response.json()
+            .then((friends) => {
+                console.log('wowowowo');
+                console.log(friends.friends);
+                this.props.handler2(friends.friends);
+            })
+        })
+        .catch( (e) => console.log(e))
+    }
 
     render() {
         if (this.state.deleted === false) {
