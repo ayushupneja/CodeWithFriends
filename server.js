@@ -66,6 +66,29 @@ router.route('/friends*')
 
 // Later will have to make this collections of users that are connected
 // For now we can just have one list
+
+// Lets make the structure of the websocket request: /rooms/identifier/username
+// Not sure what the identifier is yet. Maybe can just make it same as login identifier
+
+var rooms = {};
+
+router.ws('/newroom*', (ws, req) => {
+    console.log(req.url);
+    let temp = req.url.substring(9,req.url.lastIndexOf('/'));
+    console.log(temp);
+    let host = temp.substring(0,temp.indexOf('/'));
+    console.log(host);
+    let connector = temp.substring(temp.lastIndexOf('/') + 1, temp.length);
+    console.log(connector);
+    if (!(host in rooms)) {
+        rooms[host] = [];
+    } else {
+        ws.username = connector;
+        rooms[host].push(ws);
+        console.log(rooms);
+    }
+})
+
 var connections = [];
 
 router.ws('/echo*', (ws, req) => {

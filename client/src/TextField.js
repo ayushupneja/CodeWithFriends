@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Friend from './Friend';
 
 const activeButton = {
     border: 'solid',
@@ -12,16 +13,37 @@ class TextField extends Component {
         this.state ={
             language: 'c',
             text: '',
-            output: ''
+            output: '',
+            room: false,
+            friends: [],
+            doneLoadingFriends: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
         this.changeLanguage = this.changeLanguage.bind(this);
+        this.handleCreateRoom = this.handleCreateRoom.bind(this);
+        this.fetchFriends = this.fetchFriends.bind(this);
+        this.renderFriends = this.renderFriends.bind(this);
     }
+
+
+    fetchFriends() {
+        fetch('http://localhost:5000/friends/' + this.props.username, {
+          method: 'GET',
+          mode: 'cors'
+        })
+        .then( (response) => {
+          response.json()
+          .then((friends) => {
+            this.setState({friends: friends.friends, doneLoadingFriends: true});
+          })
+        })
+        .catch( (e) => console.log(e))
+      }
 
     componentDidMount() {
         document.getElementById('TextField').addEventListener('input', this.handleChange);
-
+        this.fetchFriends();
         /* Websocket Stuff */
         //this.connection = new WebSocket('ws://' + window.location.hostname + ':5000/echo/' + this.props.username);
         /*
@@ -35,7 +57,7 @@ class TextField extends Component {
         }
         */
     }
-
+/*
     componentDidUpdate(prevProps) {
         // Need to make sure to close the websocket when logout (and maybe change page)
         if (this.props.username !== prevProps.username) {
@@ -47,6 +69,32 @@ class TextField extends Component {
             }
         }
     }
+*/
+
+    handleCreateRoom() {
+        this.setState({ room: true});
+            this.connection = new WebSocket('ws://' + window.location.hostname + ':5000/newroom/' +  this.props.username + '/' + this.props.username);
+            this.connection.onmessage = (e) => {
+            console.log('Message from server:',e.data);
+            this.setState({ text: e.data});
+            document.getElementById('TextField').innerHTML = this.state.text;
+        }
+    }
+/*
+    componentDidUpdate(prevProps) {
+        // Need to make sure to close the websocket when logout (and maybe change page)
+        // Using Date.now() as temporary token. Not sure what to use for this later.
+            if (this.props.username !== prevProps.username) {
+                this.connection = new WebSocket('ws://' + window.location.hostname + ':5000/rooms/' + Date.now() + '/' +  this.props.username);
+                this.connection.onmessage = (e) => {
+                    console.log('Message from server:',e.data);
+                    this.setState({ text: e.data});
+                    document.getElementById('TextField').innerHTML = this.state.text;
+                }
+            }
+        
+    }
+    */
 
     componentWillUnmount() {
         document.getElementById('TextField').removeEventListener('input', this.handleChange);
@@ -56,10 +104,12 @@ class TextField extends Component {
         this.setState({text: document.getElementById('TextField').innerText});
 
         /* WebSocket stuff */
-        this.connection.send(this.state.text);
+        if (this.state.room === true) {
+            this.connection.send(this.state.text);
 
         //this.conne
-        console.log(this.state.text);
+            console.log(this.state.text);
+        }
     }
 
     /*
@@ -125,6 +175,21 @@ class TextField extends Component {
         this.setState({language : newLanguage})
     }
 
+    renderFriends() {
+        
+        if (this.state.doneLoadingFriends === true) {
+            return (
+                <div id="Friends">
+                    <h2>Friends</h2>
+                    {this.state.friends.map( (f,i) => {
+                        return (<Friend key={i} friend={f}/>)
+                    })}
+                </div>
+            );
+        }
+        
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -141,8 +206,10 @@ class TextField extends Component {
                         <br/>
                         {this.state.output}
                     </div>
+                    <button onClick={this.handleCreateRoom}>Create Room</button>
                     <button id="Run_Button" onClick={this.handleSubmission}>Run</button>
                 </div>
+                {this.renderFriends()}
             </React.Fragment>
         )
     }

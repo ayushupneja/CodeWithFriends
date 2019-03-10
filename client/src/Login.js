@@ -43,6 +43,7 @@ class Login extends Component {
                 if (response.status === 200) {
                     this.props.view();
                     this.props.name(this.state.username);
+                    this.props.done();
                     response.json()
                         .then( body => this.props.token(body.session._id));
                 }

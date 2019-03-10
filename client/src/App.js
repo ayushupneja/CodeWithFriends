@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       view : 'home',
       username : '',
-      token : ''
+      token : '',
+      doneLogginIn : false
     }
 
     this.handleEditor = this.handleEditor.bind(this);
@@ -21,6 +22,7 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.changeView = this.changeView.bind(this);
     this.renderBody = this.renderBody.bind(this);
+    this.finishLogin = this.finishLogin.bind(this);
   }
 
   handleEditor() {
@@ -37,6 +39,10 @@ class App extends Component {
 
   changeView(newView) {
     this.setState({ view: newView});
+  }
+
+  finishLogin() {
+    this.setState({ doneLogginIn: true});
   }
 
   handleLogout() {
@@ -73,11 +79,11 @@ class App extends Component {
       );
     if (this.state.view === 'logging_in')
       return (
-        <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)}/>
+        <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)} done={this.finishLogin.bind(this)}/>
       );
-    if (this.state.view === 'editor')
+    if (this.state.view === 'editor' && this.state.doneLogginIn === true)
       return (
-        <TextField username={this.state.username}/>
+        <TextField username={this.state.username} test={'abcd'}/>
       );
     if (this.state.view === 'problems')
       return (
