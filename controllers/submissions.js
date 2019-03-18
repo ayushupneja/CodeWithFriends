@@ -31,7 +31,7 @@ compileCode = function(identifier,filename,res,language) {
         compileInstruction = 'g++ -o submissions/' + identifier + ' ' + 'submissions/' + filename
     if (language === 'py')
         compileInstruction = 'python3 submissions/' + filename
-    
+
     try {
         if (language === 'c' || language === 'cpp') {
             cp.execSync(compileInstruction, (e,stdout,stderr) => {
@@ -80,9 +80,22 @@ compileCode = function(identifier,filename,res,language) {
     catch(error) {
         console.log('bruh')
         console.log(Object.keys(error));
-        res.json({
-            output: JSON.stringify(error.stderr.toString('utf8'))
-        })
+        var abc = JSON.stringify(error.stderr.toString('utf8'))
+        console.log(abc.indexOf("error"))
+        var errorOut = abc.substring(abc.indexOf("error")-1)
+        var errorOut2 = errorOut.substring(errorOut.indexOf("line")-1)
+        var newError = errorOut.replace("\n","<br\>")
+        console.log(newError)
+        res.json(
+          {
+            output: errorOut2
+          }
+        )
+        /*
+        var output = [];
+        push each line to output
+      }
+        */
     }
 }
     /*
@@ -111,4 +124,3 @@ compileCode = function(identifier,filename,res,language) {
 
 // Have to set up queue here later for backlogged submissions
 // Have to run things concurrently later
-
