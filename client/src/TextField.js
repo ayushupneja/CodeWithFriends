@@ -73,8 +73,8 @@ class TextField extends Component {
 
     handleCreateRoom() {
         this.setState({ room: true});
-            this.connection = new WebSocket('ws://' + window.location.hostname + ':5000/newroom/' +  this.props.username + '/' + this.props.username);
-            this.connection.onmessage = (e) => {
+        this.connection = new WebSocket('ws://' + window.location.hostname + ':5000/newroom/' +  this.props.username + '/' + this.props.username);
+        this.connection.onmessage = (e) => {
             console.log('Message from server:',e.data);
             this.setState({ text: e.data});
             document.getElementById('TextField').innerHTML = this.state.text;
@@ -182,7 +182,8 @@ class TextField extends Component {
                 <div id="Friends">
                     <h2>Friends</h2>
                     {this.state.friends.map( (f,i) => {
-                        return (<Friend key={i} friend={f}/>)
+                        return (<Friend key={i} friend={f} handleInvite={this.handleCreateRoom}/>)
+                        //return (<Friend key={i} friend={f} username={this.props.username} newRoom={() => this.setState({room:true})} setText={(t) => this.setState({text:t})} setTextArea={(t) => document.getElementById('TextField').innerHTML = t}/>)
                     })}
                 </div>
             );
