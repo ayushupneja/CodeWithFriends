@@ -25,6 +25,7 @@ Editor Screen
 * Improve the user submitted code i.e. require test cases, detailed description, skeleton, etc.
 * Improve logout feature to automatically log out after X time or when the window/browser is closed
 * Check user code vs. test cases for specific coding problem
+* Categorize errors and give option to show either just type of error, or full error to user depending on what user would like.
 
 # Architecture
 ![image4](./Images/Architecture.png)
@@ -38,7 +39,7 @@ MERN Stack
 
 Websockets for real time communication between users
 
-Chose to use this stack because it is easy to use and learn and we can take advantage of lots of libraries. Express makes handling requests really easy. 
+Chose to use this stack because it is easy to use and learn and we can take advantage of lots of libraries. Express makes handling requests really easy.
 
 # Team Members
 Quinn Meurer and Ayush Upneja
