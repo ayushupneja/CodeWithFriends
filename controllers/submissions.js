@@ -88,7 +88,7 @@ compileCode = function(identifier,filename,res,language) {
         console.log(newError)
         res.json(
           {
-            output: errorOut2
+            output: newError
           }
         )
         /*

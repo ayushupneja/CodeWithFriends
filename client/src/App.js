@@ -69,8 +69,15 @@ class App extends Component {
   renderBody() {
     if (this.state.view === 'home')
       return (
+        <div>
         <div id="welcome">
-          Welcome, idiot
+          <p>
+          Welcome idiot
+          </p>
+        </div>
+        <div id = "sign_in">
+          <button type="button" class="btn btn-primary btn-lg">Create Account</button>
+        </div>
         </div>
       );
     if (this.state.view === 'signing_up')
