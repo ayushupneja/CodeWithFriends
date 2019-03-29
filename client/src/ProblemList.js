@@ -30,9 +30,21 @@ class ProblemList extends Component {
 
     render() {
         if (this.state.doneLoading === true) {
+            /*
             var prob_descriptions = this.state.problems.map((problem,i) => 
                 <li className="prob_desc" key={i}>{problem.description} submitted by {problem.user}</li>
             );
+            */
+
+            var prob_descriptions = this.state.problems.map((problem,i) => 
+                <li className="prob_desc" key = {i}>
+                <span className="prob_title">{problem.title}</span>
+                <span className="prob_type">{problem.problem_type}</span>
+                <span className="prob_difficulty">{problem.difficulty}</span>
+                <span className="prob_user">{problem.user}</span>
+                </li>
+            );
+
             return (
                 <div className="ProblemList">
                     <ul>

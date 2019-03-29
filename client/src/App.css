@@ -195,8 +195,14 @@ button {
   border-style: solid;
   border-color: #007399;
   border-width: 1px;
-  margin: 200px auto 0px auto;
-  width: 40%;
+  margin: 75px auto 0px auto;
+  width: 90%;
+  padding: 10px;
+}
+
+.prob_desc {
+  float: left;
+  text-align: left;
 }
 
 #TextField_And_Button {

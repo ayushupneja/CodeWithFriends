@@ -40,7 +40,7 @@ router.route('/logout')
 
 /*
 router.route('/test')
-    .get(userController.delete)
+    .get(problemController.delete)
 */
 
 router.route('/problems')

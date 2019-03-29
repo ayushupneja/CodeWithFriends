@@ -3,9 +3,13 @@ var Problem = require('../models/problem');
 // Create endpoint /problems for POST
 exports.postProblem = function(req, res) {
     var prob = new Problem({
-        description: req.body.description,
+        title: req.body.title,
         timestamp: Date.now(),
-        user: req.body.username
+        problem_type: req.body.problem_type,
+        difficulty: req.body.difficulty,
+        user: req.body.username,
+        description: req.body.description,
+        test_cases: req.body.test_cases
     });
 
     prob.save();
@@ -27,3 +31,8 @@ exports.getProblems = function(req, res) {
     });
 };
 
+exports.delete = function() {
+    Problem.remove({}, function(err) {
+        console.log('problems deleted')
+    });
+}
