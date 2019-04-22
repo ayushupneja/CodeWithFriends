@@ -10,13 +10,44 @@ import Friends from './Friends';
 class App extends Component {
   constructor(props) {
     super(props);
+    var url = new URL(window.location.href);
+    var path = url.pathname;
+
+    var lastState = localStorage.getItem('lastState');
+    lastState = JSON.parse(lastState);
+    console.log(lastState);
+    console.log(localStorage.getItem("test"));
+
+    if (lastState == null) {
+      this.state = {
+        view : 'home',
+        username : '',
+        token : '',
+        doneLoggingIn : false
+      }
+    } else {
+      this.state = {
+        view : path.indexOf('/',1) != -1 ? path.substring(1,path.indexOf('/',1)) : 'home',
+        username : lastState.username,
+        token : lastState.token,
+        doneLoggingIn : lastState.doneLoggingIn
+      }
+    }
+/*
     this.state = {
-      view : 'home',
+      view : path.indexOf('/',1) != -1 ? path.substring(1,path.indexOf('/',1)) : 'home',
       username : '',
       token : '',
-      doneLogginIn : false
+      doneLoggingIn : false
     }
-
+    */
+/*
+    //alert(window.location.href);
+    var url = new URL(window.location.href);
+    var path = url.pathname;
+    //alert(path.substring(1,path.indexOf('/',1)));
+    alert(path.indexOf('/',1));
+*/
     this.handleEditor = this.handleEditor.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -42,7 +73,7 @@ class App extends Component {
   }
 
   finishLogin() {
-    this.setState({ doneLogginIn: true});
+    this.setState({ doneLoggingIn: true});
   }
 
   handleLogout() {
@@ -88,7 +119,7 @@ class App extends Component {
       return (
         <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)} done={this.finishLogin.bind(this)}/>
       );
-    if (this.state.view === 'editor' && this.state.doneLogginIn === true)
+    if (this.state.view === 'editor' && this.state.doneLoggingIn === true)
       return (
         <TextField username={this.state.username} test={'abcd'}/>
       );
@@ -103,6 +134,10 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
+    console.log("storing....");
+    localStorage.setItem('lastState',JSON.stringify(this.state));
+    localStorage.setItem('test',"hello world");
     return (
       <React.Fragment>
         <Navbar view={this.state.view} username={this.state.username} changeView={this.changeView.bind(this)} logout={this.handleLogout.bind(this)}/>
