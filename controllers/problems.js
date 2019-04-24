@@ -18,8 +18,22 @@ exports.postProblem = function(req, res) {
     });
 }
 
-// Create endpoint /problems for GET
-// Let's change it later to get only one problem or only x problems
+exports.getProblem = function(req, res) {
+    console.log(req.body.title);
+    let title = req.body.title.replace(/\+/g,' ');
+    console.log(title)
+    Problem.find({ title: title})
+        .then ( problem => {
+            console.log(problem)
+            if (problem) {
+                res.json(problem)
+            } else {
+                res.status(400).send({message: 'Problem not found'})
+            }
+        }
+        )
+}
+
 exports.getProblems = function(req, res) {
     Problem.find(function(err, problems) {
         if (err)

@@ -41,11 +41,14 @@ class Login extends Component {
         })
             .then((response) => {
                 if (response.status === 200) {
-                    this.props.view();
+                    //this.props.view();
                     this.props.name(this.state.username);
                     this.props.done();
                     response.json()
-                        .then( body => this.props.token(body.session._id));
+                        .then( 
+                            body => this.props.token(body.session._id),
+                            window.location.replace('./editor')
+                        );
                 }
                 else
                     this.handleFail();

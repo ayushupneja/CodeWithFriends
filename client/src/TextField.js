@@ -16,7 +16,9 @@ class TextField extends Component {
             output: '',
             room: false,
             friends: [],
-            doneLoadingFriends: false
+            doneLoadingFriends: false,
+            doneLoadingProblems: false,
+            problem: undefined
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
@@ -24,6 +26,7 @@ class TextField extends Component {
         this.handleCreateRoom = this.handleCreateRoom.bind(this);
         this.fetchFriends = this.fetchFriends.bind(this);
         this.renderFriends = this.renderFriends.bind(this);
+        this.fetchProblem = this.fetchProblem.bind(this);
     }
 
 
@@ -41,9 +44,43 @@ class TextField extends Component {
         .catch( (e) => console.log(e))
       }
 
+    fetchProblem() {
+        var url = new URL(window.location.href);
+        var path = url.pathname;
+        var title = path.substring(path.lastIndexOf('/') + 1)
+        fetch('http://localhost:5000/getProblem', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({title: title}),
+            mode: 'cors'
+        })
+        .then( (response) => {
+            if (response.status === 200 ) {
+                response.json()
+                    .then(
+                        prob => {
+                            console.log('yyyyyyyyyyyy' + prob.length)
+                            console.log(prob)
+                            if (prob.length != 0) {
+                                this.state.problem = prob
+                                this.setState({ doneLoadingProblems : true})
+                            }
+                           
+                        }
+                    )
+            }
+            else
+                console.log('whoops')
+        })
+    }
+ 
     componentDidMount() {
         document.getElementById('TextField').addEventListener('input', this.handleChange);
         this.fetchFriends();
+        this.fetchProblem();
         /* Websocket Stuff */
         //this.connection = new WebSocket('ws://' + window.location.hostname + ':5000/echo/' + this.props.username);
         /*
@@ -175,6 +212,27 @@ class TextField extends Component {
         this.setState({language : newLanguage})
     }
 
+    renderProblem() {
+        console.log("hello!")
+        if (this.state.doneLoadingProblems === true) {
+            let problem = this.state.problem[0]
+            console.log(this.state.problem)
+            console.log("hello2!")
+            return (
+                <div id="EditorProblem">
+                    <h2>{problem.title}</h2>
+                    <span id="EditorProblemDescription">{problem.description}</span>
+                    <br/>
+                    <span id="EditorProblemType">Problem Type: {problem.problem_type}</span>
+                    <br/>
+                    <span id="EditorProblemDifficulty">Difficulty: {problem.difficulty}</span>
+                    <br/>
+                    <span id="EditorSubmittedBy">Submitted by: {problem.user}</span>
+                </div>
+            );
+        }
+    }
+
     renderFriends() {
         
         if (this.state.doneLoadingFriends === true) {
@@ -194,6 +252,7 @@ class TextField extends Component {
     render() {
         return (
             <React.Fragment>
+                {this.renderProblem()}
                 <div id="TextField_And_Button">
                     <div id="Languages">
                         <button className="LanguageButton" style={this.state.language === 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</button>

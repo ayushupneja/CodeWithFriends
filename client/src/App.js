@@ -17,6 +17,15 @@ class App extends Component {
     lastState = JSON.parse(lastState);
     console.log(lastState);
     console.log(localStorage.getItem("test"));
+    var view = 'home';
+
+    if (path !== '/') {
+      if (path.indexOf('/',1) === -1) {
+        view = path.substring(1);
+      } else {
+        view = path.substring(1,path.indexOf('/',1))
+      }
+    }
 
     if (lastState == null) {
       this.state = {
@@ -27,7 +36,7 @@ class App extends Component {
       }
     } else {
       this.state = {
-        view : path.indexOf('/',1) != -1 ? path.substring(1,path.indexOf('/',1)) : 'home',
+        view : view,
         username : lastState.username,
         token : lastState.token,
         doneLoggingIn : lastState.doneLoggingIn
@@ -89,7 +98,7 @@ class App extends Component {
       .then((response) => {
         if (response.status === 200) {
           console.log(response);
-          this.setState({view : 'home'});
+          window.location.replace('./home');
         }
         else {
           alert('epic fail');
@@ -111,11 +120,11 @@ class App extends Component {
         </div>
         </div>
       );
-    if (this.state.view === 'signing_up')
+    if (this.state.view === 'signup')
       return (
         <Registration/>
       );
-    if (this.state.view === 'logging_in')
+    if (this.state.view === 'login')
       return (
         <Login view={this.handleEditor.bind(this)} name={this.handleUsername.bind(this)} token={this.handleToken.bind(this)} done={this.finishLogin.bind(this)}/>
       );

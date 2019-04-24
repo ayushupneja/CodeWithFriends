@@ -47,6 +47,9 @@ router.route('/problems')
     .post(problemController.postProblem)
     .get(problemController.getProblems)
 
+router.route('/getProblem')
+    .post(problemController.getProblem)
+
 router.route('/submissions')
     .post(submissionController.test)
 

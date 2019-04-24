@@ -14,9 +14,15 @@ class Navbar extends Component {
             <button type="button" class="btn btn-outline-primary"onClick={() => this.props.changeView('home')}>Primary</button>
           </div>
             <div id="navbar">
+            {/*
             <button id="home" onClick={() => this.props.changeView('home')}>Home</button>
                 <button id="log_in" onClick={() => this.props.changeView('logging_in')}>Log In</button>
                 <button id="sign_up" onClick={() => this.props.changeView('signing_up')}>Sign Up</button>
+            </div>
+            */}
+                <button id="home" onClick={() => window.location.replace('./home')}>Home</button>
+                <button id="log_in" onClick={() => window.location.replace('./login')}>Log In</button>
+                <button id="sign_up" onClick={() => window.location.replace('./signup')}>Sign Up</button>
             </div>
             </span>
         )
@@ -25,16 +31,16 @@ class Navbar extends Component {
     renderPostLogin() {
         return (
             <div id="navbar">
-                <button id="editor" onClick={() => this.props.changeView('editor')}>Editor</button>
-                <button id="problems" onClick={() => this.props.changeView('problems')}>Problems</button>
-                <button id="user" onClick={() => this.props.changeView('user_page')}>{this.props.username}</button>
+                <button id="editor" onClick={() => window.location.replace('./editor')}>Editor</button>
+                <button id="problems" onClick={() => window.location.replace('./problems')}>Problems</button>
+                <button id="user" onClick={() => window.location.replace('./user_page')}>{this.props.username}</button>
                 <button id="logout" onClick={this.props.logout}>Log Out</button>
             </div>
         )
     }
 
     render() {
-        if (this.props.view === 'home' || this.props.view === 'signing_up' || this.props.view === 'logging_in') {
+        if (this.props.view === 'home' || this.props.view === 'signup' || this.props.view === 'login') {
             return (
                 <React.Fragment>
                     {this.renderPreLogin()}
