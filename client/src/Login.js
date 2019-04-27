@@ -45,7 +45,7 @@ class Login extends Component {
                     this.props.name(this.state.username);
                     this.props.done();
                     response.json()
-                        .then( 
+                        .then(
                             body => this.props.token(body.session._id),
                             window.location.replace('./editor')
                         );
@@ -88,7 +88,7 @@ class Login extends Component {
                         <br/>
                         <button type="button" onClick={this.handleSubmit}>Log In</button>
                     </form>
-                </div>               
+                </div>
             );
         }
     }

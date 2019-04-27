@@ -63,7 +63,9 @@ class Registration extends Component {
                         <p className="userpass">Password:</p>
                         <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
                         <br/>
-                        <button type="button" onClick={this.handleSubmit}>Sign Up</button>
+                        <div id = "sign_in">
+                          <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Create Account</button>
+                        </div>
                     </form>
                 </div>
             );
@@ -80,7 +82,7 @@ class Registration extends Component {
                             <br/>
                             <button type="button" onClick={this.handleSubmit}>Sign Up</button>
                         </form>
-                    </div>                   
+                    </div>
                 );
         } else {
             return (
