@@ -47,6 +47,10 @@ var ProblemSchema = new mongoose.Schema({
             answer: String
         }],
         default: []
+    },
+    test_case_datastructure: {
+        type: String,
+        default: 'array'
     }
 })
 

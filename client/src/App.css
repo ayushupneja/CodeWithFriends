@@ -203,8 +203,8 @@ html, body { height: 100%; width: 100%; margin: 0}
 }
 
 .prob_desc {
-  float: left;
   text-align: left;
+  list-style-type: none;
 }
 
 #TextField_And_Button {
@@ -289,10 +289,6 @@ html, body { height: 100%; width: 100%; margin: 0}
   float: right;
 }
 
-.prob_desc {
-  list-style-type: none;
-}
-
 .Friend .Invite {
   float: right;
 }
@@ -302,6 +298,11 @@ html, body { height: 100%; width: 100%; margin: 0}
   float: right;
   border: 1px solid red;
   color: blue;
+}
+
+.one_problem {
+  display: block;
+  border: 1px solid red;
 }
 
 @keyframes App-logo-spin {

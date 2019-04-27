@@ -9,7 +9,8 @@ exports.postProblem = function(req, res) {
         difficulty: req.body.difficulty,
         user: req.body.username,
         description: req.body.description,
-        test_cases: req.body.test_cases
+        test_cases: req.body.test_cases,
+        test_case_datastructure : req.body.test_case_datastructure
     });
 
     prob.save();
