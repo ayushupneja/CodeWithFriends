@@ -38,7 +38,7 @@ class ProblemList extends Component {
 
             var prob_descriptions = this.state.problems.map((problem,i) => 
                 <li className="prob_desc" key = {i}>
-                    <div class="one_problem">
+                    <div className="one_problem">
                         <span className="prob_title"><a href={"/editor/problems/" + problem.title.split(' ').join('+')}>{problem.title}</a></span>
                         <span className="prob_type">{problem.problem_type}</span>
                         <span className="prob_difficulty">{problem.difficulty}</span>

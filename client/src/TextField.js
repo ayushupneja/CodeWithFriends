@@ -27,6 +27,7 @@ class TextField extends Component {
         this.fetchFriends = this.fetchFriends.bind(this);
         this.renderFriends = this.renderFriends.bind(this);
         this.fetchProblem = this.fetchProblem.bind(this);
+        this.renderText = this.renderText.bind(this);
     }
 
 
@@ -64,9 +65,11 @@ class TextField extends Component {
                         prob => {
                             console.log('yyyyyyyyyyyy' + prob.length)
                             console.log(prob)
-                            if (prob.length != 0) {
-                                this.state.problem = prob
+                            if (prob.length !== 0) {
+                                this.setState({problem : prob})
                                 this.setState({ doneLoadingProblems : true})
+                                this.setState({text : prob[0].function_definition})
+                                //console.log(prob[0].function_definition)
                             }
                            
                         }
@@ -78,7 +81,7 @@ class TextField extends Component {
     }
  
     componentDidMount() {
-        document.getElementById('TextField').addEventListener('input', this.handleChange);
+        document.getElementById('EditArea').addEventListener('input', this.handleChange);
         this.fetchFriends();
         this.fetchProblem();
         /* Websocket Stuff */
@@ -114,7 +117,7 @@ class TextField extends Component {
         this.connection.onmessage = (e) => {
             console.log('Message from server:',e.data);
             this.setState({ text: e.data});
-            document.getElementById('TextField').innerHTML = this.state.text;
+            document.getElementById('EditArea').innerHTML = this.state.text;
         }
     }
 /*
@@ -134,11 +137,11 @@ class TextField extends Component {
     */
 
     componentWillUnmount() {
-        document.getElementById('TextField').removeEventListener('input', this.handleChange);
+        document.getElementById('EditArea').removeEventListener('input', this.handleChange);
     }
 
     handleChange() {
-        this.setState({text: document.getElementById('TextField').innerText});
+        this.setState({text: document.getElementById('EditArea').innerText});
 
         /* WebSocket stuff */
         if (this.state.room === true) {
@@ -213,11 +216,9 @@ class TextField extends Component {
     }
 
     renderProblem() {
-        console.log("hello!")
+        console.log(this.state.text)
         if (this.state.doneLoadingProblems === true) {
             let problem = this.state.problem[0]
-            console.log(this.state.problem)
-            console.log("hello2!")
             return (
                 <div id="EditorProblem">
                     <h2>{problem.title}</h2>
@@ -249,6 +250,23 @@ class TextField extends Component {
         
     }
 
+    renderText() {
+        var firstline = ""
+        var lastline = ""
+        if(this.state.doneLoadingProblems === true) {
+            firstline = this.state.problem[0].function_definition + " {"
+            lastline = "}"
+        }
+        return (
+            <div id ="TextField" spellCheck="false">
+                <span>{firstline}</span>
+                    <div id="EditArea" contentEditable="true">
+                    </div>
+                <span>{lastline}</span>
+            </div>
+        )
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -259,8 +277,9 @@ class TextField extends Component {
                         <button className="LanguageButton" style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</button>
                         <button className="LanguageButton" style={this.state.language === 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</button>
                     </div>
-                    <div id="TextField" contentEditable="true" spellCheck="false">
-                    </div>
+                    
+                   {this.renderText()}
+                    
                     <div id="OutputField">
                         Output:
                         <br/>

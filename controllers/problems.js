@@ -2,6 +2,7 @@ var Problem = require('../models/problem');
 
 // Create endpoint /problems for POST
 exports.postProblem = function(req, res) {
+    console.log(req.body.function_definition);
     var prob = new Problem({
         title: req.body.title,
         timestamp: Date.now(),
@@ -10,7 +11,8 @@ exports.postProblem = function(req, res) {
         user: req.body.username,
         description: req.body.description,
         test_cases: req.body.test_cases,
-        test_case_datastructure : req.body.test_case_datastructure
+        test_case_datastructure : req.body.test_case_datastructure,
+        function_definition : req.body.function_definition
     });
 
     prob.save();
