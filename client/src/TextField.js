@@ -196,7 +196,8 @@ class TextField extends Component {
             body: JSON.stringify({
                 username: this.props.username,
                 submission: this.state.text,
-                language: this.state.language
+                language: this.state.language,
+                function_definition: this.state.problem[0].function_definition
             }),
             mode: 'cors',
         })

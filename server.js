@@ -51,7 +51,8 @@ router.route('/getProblem')
     .post(problemController.getProblem)
 
 router.route('/submissions')
-    .post(submissionController.test)
+    .post(submissionController.runProblem)
+    //.post(submissionController.test)
 
 router.route('/addFriend')
     .post(userController.addFriend)

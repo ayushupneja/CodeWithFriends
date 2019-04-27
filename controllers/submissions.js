@@ -14,6 +14,30 @@ exports.test = async function(req,res) {
     */
 }
 
+exports.runProblem = async function(req,res) {
+    let identifier = Date.now().toString() + req.body.username
+    let language = req.body.language
+    await writeFiles(req,res,identifier,language)
+}
+
+writeFiles = function(req,res,identifier,language) {
+    let declaration = req.body.function_definition;
+    let code = declaration + '{' + req.body.submission + '}'
+    fs.writeFile('./submissions/' + identifier + '.' + language, code, function(err) {
+        if(err) {
+            res.send(err);
+        }
+    })
+
+    if (language === "cpp" || language === "c") {
+        fs.writeFile('./submissions/' + identifier + '.h', declaration + ';', function(err) {
+            if(err) {
+                res.send(err);
+            }
+        })
+    }
+}
+
 postSubmission = function(req, res, filename) {
     var submission = req.body.submission;
     fs.writeFile('./submissions/' + filename, submission, function(err) {
