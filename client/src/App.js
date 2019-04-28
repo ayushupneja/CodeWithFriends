@@ -7,7 +7,6 @@ import TextField from './TextField';
 import ProblemList from './ProblemList';
 import Navbar from './Navbar';
 import Friends from './Friends';
-import TypeWriter from 'react-typewriter'
 import Typist from 'react-typist'
 
 
