@@ -38,10 +38,9 @@ router.route('/login')
 router.route('/logout')
     .delete(userController.logout)
 
-/*
+
 router.route('/test')
     .get(problemController.delete)
-*/
 
 router.route('/problems')
     .post(problemController.postProblem)
@@ -146,13 +145,13 @@ app.listen(80)
 
 /*
 var router = express.Router();
- 
+
 router.ws('/echo', function(ws, req) {
   ws.on('message', function(msg) {
     ws.send(msg);
   });
 });
- 
+
 app.use("/ws-stuff", router);
 */
 
