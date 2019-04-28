@@ -64,13 +64,16 @@ class Login extends Component {
             return (
                 <div id="login">
                     <form onSubmit={() => {return false;}}>
-                        <p>Username:</p>
-                        <input type="text" value={this.state.username} onChange={this.handleUsernameChange}/>
-                        <br/>
-                        <p>Password:</p>
-                        <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
-                        <br/>
-                        <button type="button" onClick={this.handleSubmit}>Log In</button>
+                          <br/>
+                          <br/>
+                          <input type="text" value={this.state.username} placeholder="Username" onChange={this.handleUsernameChange}/>
+                          <br/>
+                          <br/>
+                          <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange} min = "6" required/>
+                          <br/>
+                          <div id = "sign_in">
+                            <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Log In</button>
+                          </div>
                     </form>
                 </div>
             );
@@ -78,15 +81,18 @@ class Login extends Component {
             return (
                  <div id="login">
                     <p className="failtext">Login Failed. Try again</p>
-                    <br/>
-                    <form onSubmit={() => {return false;}}>
-                        <p>Username:</p>
-                        <input type="text" value={this.state.username} onChange={this.handleUsernameChange}/>
                         <br/>
-                        <p>Password:</p>
-                        <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
+                        <form onSubmit={() => {return false;}}>
                         <br/>
-                        <button type="button" onClick={this.handleSubmit}>Log In</button>
+                        <br/>
+                        <input type="text" value={this.state.username} placeholder="Username" onChange={this.handleUsernameChange}/>
+                        <br/>
+                        <br/>
+                        <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange} min = "6" required/>
+                        <br/>
+                        <div id = "sign_in">
+                          <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Log In</button>
+                        </div>
                     </form>
                 </div>
             );
