@@ -205,7 +205,16 @@ class TextField extends Component {
             .then((response) => {
                 if (response.status === 200) {
                     response.json()
-                        .then( body => this.setState({ output : body.output}));
+                        .then( 
+                            body => {
+                                this.setState({ output : body.output})
+                                let message = body.total === body.numCorrect ? "Passed" : "Failed";
+                                console.log(body);
+                                let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
+                                alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n"
+                                + message2);
+                            }
+                        );
                 } else {
                     console.log("Submission failed");
                 }

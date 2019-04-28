@@ -2,7 +2,6 @@ var Problem = require('../models/problem');
 
 // Create endpoint /problems for POST
 exports.postProblem = function(req, res) {
-    console.log(req.body.function_definition);
     var prob = new Problem({
         title: req.body.title,
         timestamp: Date.now(),
@@ -34,7 +33,7 @@ exports.getProblem = function(req, res) {
                 res.status(400).send({message: 'Problem not found'})
             }
         }
-        )
+    )
 }
 
 exports.getProblems = function(req, res) {
