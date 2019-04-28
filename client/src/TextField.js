@@ -197,7 +197,8 @@ class TextField extends Component {
                 username: this.props.username,
                 submission: this.state.text,
                 language: this.state.language,
-                function_definition: this.state.problem[0].function_definition
+                function_definition: this.state.problem[0].function_definition,
+                problem_title : this.state.problem[0].title
             }),
             mode: 'cors',
         })
@@ -284,7 +285,11 @@ class TextField extends Component {
                     <div id="OutputField">
                         Output:
                         <br/>
-                        {this.state.output}
+                        <div>
+                            {this.state.output.split("\n").map((i,key) => {
+                                return <div key={key}>{i}</div>
+                            })}
+                        </div>
                     </div>
                     <button onClick={this.handleCreateRoom}>Create Room</button>
                     <button id="Run_Button" onClick={this.handleSubmission}>Run</button>

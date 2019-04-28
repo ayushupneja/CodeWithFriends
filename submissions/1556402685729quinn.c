@@ -1,1 +1,0 @@
-int sumArray(int arr[], int n){return 1;}

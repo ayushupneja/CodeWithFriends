@@ -214,8 +214,8 @@ html, body { height: 100%; width: 100%; margin: 0}
 }
 
 #Friends {
+  display: block;
   margin: 10px auto 0px auto;
-  height: 50vh;
   width: 40%;
   background-color: red;
 }
@@ -241,9 +241,9 @@ html, body { height: 100%; width: 100%; margin: 0}
 }
 
 #OutputField {
+  display: block;
   width: 100%;
   padding: 5px 5px 5px 5px;
-  height: 10%;
   background-color: #e6e6ff;
   color: #33334d;
 }
