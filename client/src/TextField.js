@@ -187,6 +187,7 @@ class TextField extends Component {
     */
 
     handleSubmission() {
+        
         fetch('http://localhost:5000/submissions', {
             method: 'POST',
             headers: {
@@ -197,8 +198,8 @@ class TextField extends Component {
                 username: this.props.username,
                 submission: this.state.text,
                 language: this.state.language,
-                function_definition: this.state.problem[0].function_definition,
-                problem_title : this.state.problem[0].title
+                function_definition: this.state.problem !== undefined ? this.state.problem[0].function_definition : "",
+                problem_title : this.state.problem !== undefined ? this.state.problem[0].title : ""
             }),
             mode: 'cors',
         })
@@ -208,11 +209,13 @@ class TextField extends Component {
                         .then( 
                             body => {
                                 this.setState({ output : body.output})
-                                let message = body.total === body.numCorrect ? "Passed" : "Failed";
-                                console.log(body);
-                                let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
-                                alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n"
-                                + message2);
+                                if (body.total !== undefined && body.numCorrect !== undefined) {
+                                    let message = body.total === body.numCorrect ? "Passed" : "Failed";
+                                    console.log(body);
+                                    let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
+                                    alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n" + message2);
+                                }
+                                
                             }
                         );
                 } else {

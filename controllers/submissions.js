@@ -18,9 +18,15 @@ exports.runProblem = async function(req,res) {
     //console.log(req)
     console.log(req.body.problem_title)
     let identifier = Date.now().toString() + req.body.username
-    let language = req.body.language
-    await writeFiles(req,res,identifier,language)
-    await setTimeout(() => {compileFiles(req, res, identifier, language)},2);
+    if (req.body.problem_title === "" && req.body.function_definition === "") {
+        let filename = identifier + '.' + req.body.language
+        await postSubmission(req,res,filename);
+        await setTimeout(() => {compileCode(identifier,filename,res,req.body.language)},2);
+    } else {
+        let language = req.body.language
+        await writeFiles(req,res,identifier,language)
+        await setTimeout(() => {compileFiles(req, res, identifier, language)},2);
+    }
 }
 
 writeFiles = function(req,res,identifier,language) {
@@ -288,24 +294,15 @@ compileCode = function(identifier,filename,res,language) {
         }
     }
     catch(error) {
-        console.log('bruh')
-        console.log(Object.keys(error));
-        var abc = JSON.stringify(error.stderr.toString('utf8'))
-        console.log(abc.indexOf("error"))
-        var errorOut = abc.substring(abc.indexOf("error")-1)
-        var errorOut2 = errorOut.substring(errorOut.indexOf("line")-1)
-        var newError = errorOut.replace("\n","<br\>")
-        console.log(newError)
+        cp.execSync('rm ' + './submissions/' + identifier + '.' + language);
+        let abc = JSON.stringify(error.stderr.toString('utf8'));
+        let errorOut = abc.substring(abc.indexOf("error")-1)
+        errorOut = errorOut.replace(/\\n/g,"\n")
         res.json(
-          {
-            output: newError
-          }
+            {
+                output: errorOut,
+            }
         )
-        /*
-        var output = [];
-        push each line to output
-      }
-        */
     }
 }
     /*
