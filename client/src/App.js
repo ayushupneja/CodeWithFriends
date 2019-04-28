@@ -101,7 +101,10 @@ class App extends Component {
       .then((response) => {
         if (response.status === 200) {
           console.log(response);
-          window.location.replace('./home');
+          var url = new URL(window.location.toString())
+          var pathname = url.pathname
+          var newURL = window.location.toString().replace(pathname,'/home')
+          window.location.href = newURL
         }
         else {
           alert('epic fail');

@@ -87,7 +87,8 @@ compileFiles = function(req, res, identifier, language) {
                 res.json({
                     output: stdout,
                     total: total,
-                    numCorrect: numCorrect
+                    numCorrect: numCorrect,
+                    score: req.body.submission.length
                 })
             });
             cp.execSync('rm submissions/' + identifier);
@@ -103,7 +104,7 @@ compileFiles = function(req, res, identifier, language) {
         errorOut = errorOut.replace(/\\n/g,"\n")
         res.json(
             {
-                output: errorOut
+                output: errorOut,
             }
         )
     }

@@ -5,6 +5,7 @@ class Navbar extends Component {
         super(props);
         this.renderPreLogin = this.renderPreLogin.bind(this);
         this.renderPostLogin = this.renderPostLogin.bind(this);
+        this.changeURL = this.changeURL.bind(this);
     }
 
     renderPreLogin() {
@@ -28,12 +29,20 @@ class Navbar extends Component {
         )
     }
 
+    changeURL(newPath) {
+        var url = new URL(window.location.toString())
+        var pathname = url.pathname;
+        var newURL = window.location.toString().replace(pathname,newPath)
+        console.log(newURL)
+        window.location.href = newURL;
+    }
+
     renderPostLogin() {
         return (
             <div id="navbar">
-                <button id="editor" onClick={() => window.location.replace('./editor')}>Editor</button>
-                <button id="problems" onClick={() => window.location.replace('./problems')}>Problems</button>
-                <button id="user" onClick={() => window.location.replace('./user_page')}>{this.props.username}</button>
+                <button id="editor" onClick={() => this.changeURL('/editor')}>Editor</button>
+                <button id="problems" onClick={() => this.changeURL('/problems')}>Problems</button>
+                <button id="user" onClick={() => this.changeURL('/user_page')}>{this.props.username}</button>
                 <button id="logout" onClick={this.props.logout}>Log Out</button>
             </div>
         )

@@ -209,7 +209,10 @@ class TextField extends Component {
                             body => {
                                 this.setState({ output : body.output})
                                 let message = body.total === body.numCorrect ? "Passed" : "Failed";
-                                alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message);
+                                console.log(body);
+                                let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
+                                alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n"
+                                + message2);
                             }
                         );
                 } else {
