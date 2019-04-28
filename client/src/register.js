@@ -13,7 +13,7 @@ class Register extends Component {
                 <input type="text" name="password"></input>
                 <br/>
                 <br/>
-                <input type="submit" value="Sign Up"></input>
+                <input type="submit" value="Sign Up"></input>\
                 </form>
             </div>
         );

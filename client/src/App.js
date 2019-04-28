@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import './App.css';
 import Registration from './Registration';
 import Login from './Login';
@@ -6,6 +7,9 @@ import TextField from './TextField';
 import ProblemList from './ProblemList';
 import Navbar from './Navbar';
 import Friends from './Friends';
+import TypeWriter from 'react-typewriter'
+import Typist from 'react-typist'
+
 
 class App extends Component {
   constructor(props) {
@@ -110,13 +114,32 @@ class App extends Component {
     if (this.state.view === 'home')
       return (
         <div>
-        <div id="welcome">
-          <p>
-          Welcome idiot
-          </p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="sign_in">
+          <Typist
+            avgTypingDelay = {100}
+            startDelay = {1500}
+            cursor = {{show: false}}>
+            <h1>Collaborate.</h1>
+            <Typist.Backspace count={12} delay={2000} />
+            <Typist.Delay ms={500} />
+            <h1>Compete.</h1>
+            <Typist.Backspace count={8} delay={2000} />
+            <Typist.Delay ms={500} />
+            <h1>Code with Friends.</h1>
+          </Typist>
+
         </div>
         <div id = "sign_in">
-          <button type="button" class="btn btn-primary btn-lg">Create Account</button>
+          <button type="button" class="btn btn-primary btn-lg" onClick={() => window.location.replace('./signup')}>Create Account</button>
         </div>
         </div>
       );
