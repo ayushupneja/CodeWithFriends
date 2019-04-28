@@ -82,8 +82,12 @@ compileFiles = function(req, res, identifier, language) {
                 }
                 console.log('stdout: ', stdout);
                 console.log('stderr: ', stderr);
+                let numCorrect = stdout.substring(stdout.lastIndexOf("Correct: ") + "Correct: ".length, stdout.lastIndexOf("\n"))
+                let total = stdout.substring(stdout.lastIndexOf("Total: ") + "Total: ".length)
                 res.json({
-                    output: stdout
+                    output: stdout,
+                    total: total,
+                    numCorrect: numCorrect
                 })
             });
             cp.execSync('rm submissions/' + identifier);
