@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ReactDOM from 'react-dom'
+//import ReactDOM from 'react-dom'
 
 class ProblemList extends Component {
     constructor() {
