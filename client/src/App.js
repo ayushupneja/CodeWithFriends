@@ -8,7 +8,7 @@ import ProblemList from './ProblemList';
 import Navbar from './Navbar';
 import Friends from './Friends';
 import TypeWriter from 'react-typewriter'
-import Typist from 'react-typist';
+import Typist from 'react-typist'
 
 
 class App extends Component {
@@ -123,7 +123,6 @@ class App extends Component {
         <br />
         <br />
         <br />
-
         <div id="sign_in">
           <Typist
             avgTypingDelay = {100}
@@ -140,7 +139,7 @@ class App extends Component {
 
         </div>
         <div id = "sign_in">
-          <button type="button" class="btn btn-primary btn-lg">Create Account</button>
+          <button type="button" class="btn btn-primary btn-lg" onClick={() => window.location.replace('./signup')}>Create Account</button>
         </div>
         </div>
       );

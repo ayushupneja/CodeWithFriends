@@ -64,7 +64,7 @@ class Registration extends Component {
                         <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
                         <br/>
                         <div id = "sign_in">
-                          <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Create Account</button>
+                          <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Sign Up</button>
                         </div>
                     </form>
                 </div>
