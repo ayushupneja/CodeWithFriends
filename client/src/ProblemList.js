@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ReactDOM from 'react-dom'
 
 class ProblemList extends Component {
     constructor() {
@@ -31,12 +32,11 @@ class ProblemList extends Component {
     render() {
         if (this.state.doneLoading === true) {
             /*
-            var prob_descriptions = this.state.problems.map((problem,i) => 
+            var prob_des = this.state.problems.map((problem,i) =>
                 <li className="prob_desc" key={i}>{problem.description} submitted by {problem.user}</li>
             );
             */
-
-            var prob_descriptions = this.state.problems.map((problem,i) => 
+            var prob_des = this.state.problems.map((problem,i) =>
                 <li className="prob_desc" key = {i}>
                     <div className="one_problem">
                         <span className="prob_title"><a href={"/editor/problems/" + problem.title.split(' ').join('+')}>{problem.title}</a></span>
@@ -46,11 +46,10 @@ class ProblemList extends Component {
                     </div>
                 </li>
             );
-
             return (
                 <div className="ProblemList">
                     <ul>
-                        {prob_descriptions}
+                        {prob_des}
                     </ul>
                 </div>
             )
