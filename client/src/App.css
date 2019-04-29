@@ -352,7 +352,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 
 .prob_user {
   display: block;
-  color: blue;
+  color: #007BFF;
 }
 
 #customers {
@@ -376,6 +376,16 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   text-align: left;
   background-color: #4CAF50;
   color: white;
+}
+
+.leaderboard {
+  cursor: pointer;
+  color: #007BFF;
+}
+
+.leaderboard:hover {
+  text-shadow: 1px 1px 1px #ccc;
+  text-decoration: underline;
 }
 
 .one_problem {
