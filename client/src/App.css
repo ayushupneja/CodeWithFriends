@@ -211,7 +211,6 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   width: 30%;
   position: fixed;
   float: top;
-  border-right: 1px solid black;
 }
 
 #TextField_And_Button2 {
@@ -221,6 +220,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   height: calc(100% - 70px);
   position: absolute;
   float: top;
+  border-left: 1px solid #ccccff;
 }
 
 #login p {
@@ -340,7 +340,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   background-color: #f8f8ff;
   position: fixed;
   top: 40px;
-  z-index: 5;
+  border-left: 1px solid #ccccff;
 }
 
 .LanguageButton {
