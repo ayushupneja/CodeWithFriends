@@ -239,13 +239,16 @@ class TextField extends Component {
         console.log(this.state.text)
         if (this.state.doneLoadingProblems === true) {
             let problem = this.state.problem[0]
+            let diff_style = problem.difficulty == 'easy' ? {color: 'green'} : problem.difficulty == 'medium' ? {color: 'yellow'} : {color : 'red'};
             return (
                 <div id="EditorProblem2">
-                    <h3>{problem.title}</h3>
+                    <h3 id="EditorProblemTitle">{problem.title}</h3>
+                    <p id="type_difficulty">
+                        <span id="EditorProblemType">Problem Type: <strong> {problem.problem_type} </strong></span>
+                        <span id="EditorProblemDifficulty">Difficulty: <span style={diff_style}><strong>{problem.difficulty}</strong></span></span>
+                    </p>
                     <p><em><span id="EditorProblemDescription">{problem.description}</span></em></p>
                     <br/>
-                    <p><span id="EditorProblemType"><strong>Problem Type:</strong> {problem.problem_type}</span></p>
-                    <p><span id="EditorProblemDifficulty"><strong>Difficulty:</strong> {problem.difficulty}</span></p>
                     <br/>
                     <span id="EditorSubmittedBy"><small>Submitted by: {problem.user}</small></span>
                 </div>
