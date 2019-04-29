@@ -16,6 +16,13 @@ var ProblemSchema = new mongoose.Schema({
 });
 */
 
+let lo = {
+    score: 1000,
+    user: 'quinnyyy'
+}
+
+let lb = [lo,lo,lo,lo,lo,lo,lo,lo,lo,lo]
+
 var ProblemSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -55,6 +62,13 @@ var ProblemSchema = new mongoose.Schema({
     function_definition: {
         type: String,
         default: ''
+    },
+    leader_board: {
+        type: [{
+            score: Number,
+            user: String
+        }],
+        default: lb
     }
 })
 

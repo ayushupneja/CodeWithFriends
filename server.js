@@ -38,10 +38,10 @@ router.route('/login')
 router.route('/logout')
     .delete(userController.logout)
 
-/*
+
 router.route('/test')
     .get(problemController.delete)
-*/
+
 
 router.route('/problems')
     .post(problemController.postProblem)

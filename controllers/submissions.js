@@ -1,6 +1,8 @@
 var fs = require('fs');
 var cp = require('child_process');
 
+var Problem = require('../models/problem');
+
 exports.test = async function(req,res) {
     var identifier = Date.now().toString() + req.body.username
     var filename = identifier + '.' + req.body.language
@@ -90,11 +92,26 @@ compileFiles = function(req, res, identifier, language) {
                 console.log('stderr: ', stderr);
                 let numCorrect = stdout.substring(stdout.lastIndexOf("Correct: ") + "Correct: ".length, stdout.lastIndexOf("\n"))
                 let total = stdout.substring(stdout.lastIndexOf("Total: ") + "Total: ".length)
+                let score = req.body.submission.length;
+                if (numCorrect === total) {
+                    Problem.findOne({ title : req.body.problem_title})
+                        .then ( problem => {
+                            if (score < problem.leader_board[problem.leader_board.length-1].score) {
+                                problem.leader_board[problem.leader_board.length-1].score = score;
+                                problem.leader_board[problem.leader_board.length-1].user = req.body.username;
+                                problem.leader_board.sort((a,b) => (a.score > b.score) ? 1 : -1)
+                                let test = problem.leader_board;
+                                Problem.findOneAndUpdate( {title : req.body.problem_title}, {leader_board : test}, function(err,doc) {
+                                    if (err) console.log("shit!")
+                                })
+                            }
+                        })
+                }
                 res.json({
                     output: stdout,
                     total: total,
                     numCorrect: numCorrect,
-                    score: req.body.submission.length
+                    score: score
                 })
             });
             cp.execSync('rm submissions/' + identifier);
