@@ -3,6 +3,7 @@ import Friend from './Friend';
 import Swal from 'sweetalert2';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
+import Button from'react-bootstrap/Button';
 
 const activeButton = {
     border: 'solid',
@@ -297,8 +298,7 @@ class TextField extends Component {
             <React.Fragment>
                 {/*this.renderFriends()*/}
                 {this.renderProblem()}
-                <div id="TextField_And_Button2">
-                    <div id="Languages">
+                <div id="newLanguages">
                         <DropdownButton id="dropdown-basic-button" title="Language">
                             <Dropdown.Item style={this.state.language === 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</Dropdown.Item>
                             <Dropdown.Item style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</Dropdown.Item>
@@ -309,12 +309,26 @@ class TextField extends Component {
                         <button className="LanguageButton" style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</button>
                         <button className="LanguageButton" style={this.state.language === 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</button>
                     */}
-                    </div>
-
+                </div>
+                <div id="TextField_And_Button2">
+                
                    {this.renderText()}
-
+                    <div id="OutputArea">
+                        <div id="OutputLine">
+                            <u>Output:</u>
+                            <Button id="Run_Button" variant="primary" onClick={this.handleSubmission}>Run</Button>
+                            {/*<button id="Run_Button" onClick={this.handleSubmission}>Run</button>*/}
+                        </div>
+                        <div id="OutputText">
+                            {this.state.output.split("\n").map((i,key) => {
+                                return <div key={key}>{i}</div>
+                            })}
+                        </div>
+                    </div>
+                    {/*
                     <div id="OutputField">
                         Output:
+                        <button id="Run_Button" onClick={this.handleSubmission}>Run</button>
                         <br/>
                         <div>
                             {this.state.output.split("\n").map((i,key) => {
@@ -322,8 +336,8 @@ class TextField extends Component {
                             })}
                         </div>
                     </div>
-                    <button onClick={this.handleCreateRoom}>Create Room</button>
-                    <button id="Run_Button" onClick={this.handleSubmission}>Run</button>
+                        */}
+                    {/*<button onClick={this.handleCreateRoom}>Create Room</button>*/}
                 </div>
             </React.Fragment>
         )
