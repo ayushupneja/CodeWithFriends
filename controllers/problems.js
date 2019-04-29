@@ -11,7 +11,8 @@ exports.postProblem = function(req, res) {
         description: req.body.description,
         test_cases: req.body.test_cases,
         test_case_datastructure : req.body.test_case_datastructure,
-        function_definition : req.body.function_definition
+        function_definition : req.body.function_definition,
+        leader_board : req.body.leader_board
     });
 
     prob.save();
