@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Friend from './Friend';
 
+import Swal from 'sweetalert2';
+
 const activeButton = {
     border: 'solid',
     borderWidth: '1px',
@@ -213,7 +215,10 @@ class TextField extends Component {
                                     let message = body.total === body.numCorrect ? "Passed" : "Failed";
                                     console.log(body);
                                     let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
-                                    alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n" + message2);
+                                    //alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n" + message2);
+                                    Swal.fire(
+                                        'Correct: ' + body.numCorrect + '\nTotal: ' + body.total + '\n' + message + '\n' + message2
+                                    )
                                 }
                                 
                             }
