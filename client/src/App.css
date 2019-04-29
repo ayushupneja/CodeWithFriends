@@ -62,16 +62,20 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 }
 
 #navbar {
+  border-bottom: solid black 1px;
   width: 100%;
   overflow: hidden;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #eafff5;
+  background-color: #007BFF;
   height: 40px;
   text-align: right;
-  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+.title {
+  font-size: 5em;
 }
 
 #navbar button {
@@ -81,7 +85,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   position: relative;
   display: inline-block;
   background-color:rgba(0,0,0,0);
-  color: #000000;
+  color: #ffffff;
   margin-right: 1.5%;
   height: 40px;
   font-size: 1.3em;
@@ -116,13 +120,23 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   border-width: 0px;
   border-radius: 2%;
   border-color: #797979;
-  background-color: #eafff5;
+  background-color: #eaf9ff;
+  border: solid 1px #99e6ff;
   background-image: project-12-code_with_friends/Images/background.jpg;
 }
 
 #registration .userpass {
   margin: 0 auto;
   width: 80%;
+}
+
+#dropdown-basic-button {
+  width: 110px;
+  float: right;
+  height: 29px;
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 1px;
 }
 
 #registration .successtext {
@@ -150,11 +164,9 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   width: 30%;
   height: 350px;
   margin: 150px auto 0px auto;
-  border-style: solid;
-  border-width: 0px;
+  background-color: #eaf9ff;
+  border: solid 1px #99e6ff;
   border-radius: 2%;
-  border-color: #797979;
-  background-color: #eafff5;
 }
 
 #EditorProblem {
@@ -236,9 +248,10 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 }
 
 #TextField_And_Button {
-  margin: 100px auto 0px auto;
-  height: 75vh;
-  width: 40%
+  position: relative;
+  margin: 0px auto 0px auto;
+  height: 85vh;
+  width: 40%;
 }
 
 #Friends {
@@ -263,8 +276,10 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 }
 
 #Languages {
+  border-bottom: 1px solid black;
   width: 100%;
-  height: 5%;
+  height: 30px;
+  position: relative;
   background-color: #e6e6ff;
 }
 

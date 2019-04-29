@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Friend from './Friend';
 import Swal from 'sweetalert2';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 
 const activeButton = {
     border: 'solid',
@@ -287,14 +289,24 @@ class TextField extends Component {
 
     render() {
         return (
+            
+
+
             <React.Fragment>
                 {this.renderFriends()}
                 {this.renderProblem()}
                 <div id="TextField_And_Button">
                     <div id="Languages">
+                        <DropdownButton id="dropdown-basic-button" title="Language">
+                            <Dropdown.Item style={this.state.language === 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</Dropdown.Item>
+                            <Dropdown.Item style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</Dropdown.Item>
+                            <Dropdown.Item style={this.state.language === 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</Dropdown.Item>
+                        </DropdownButton>
+                    {/*
                         <button className="LanguageButton" style={this.state.language === 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</button>
                         <button className="LanguageButton" style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</button>
                         <button className="LanguageButton" style={this.state.language === 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</button>
+                    */}
                     </div>
 
                    {this.renderText()}

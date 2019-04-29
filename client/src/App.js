@@ -120,31 +120,32 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <br/>
+        <br/>
         <div id="sign_in">
+        
           <Typist
             avgTypingDelay = {100}
             startDelay = {1500}
             cursor = {{show: false}}>
-            <h1>Code.</h1>
+            <h1 className="title">Code.</h1>
             <Typist.Backspace count={5} delay={1500} />
             <Typist.Delay ms={500} />
-            <h1>Collaborate.</h1>
+            <h1 className="title">Collaborate.</h1>
             <Typist.Backspace count={12} delay={1500} />
             <Typist.Delay ms={500} />
-            <h1>Compete.</h1>
+            <h1 className="title">Compete.</h1>
             <Typist.Backspace count={8} delay={1500} />
             <Typist.Delay ms={500} />
-            <h1>Hackstitute.</h1>
+            <h1 className="title">Code with Friends</h1>
           </Typist>
 
         </div>
+        <br/>
+        <br/>
+        <br/>
         <div id = "sign_in">
-          <button type="button" class="btn btn-primary btn-lg" onClick={() => window.location.replace('./signup')}>Create Account</button>
+          <button type="button" id="create_acc" class="btn btn-primary btn-lg" onClick={() => window.location.replace('./signup')}>Create Account</button>
         </div>
         </div>
       );
