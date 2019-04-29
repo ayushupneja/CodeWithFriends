@@ -239,14 +239,13 @@ class TextField extends Component {
             let problem = this.state.problem[0]
             return (
                 <div id="EditorProblem">
-                    <h2>{problem.title}</h2>
-                    <span id="EditorProblemDescription">{problem.description}</span>
+                    <h1>{problem.title}</h1>
+                    <p><em><span id="EditorProblemDescription">{problem.description}</span></em></p>
                     <br/>
-                    <span id="EditorProblemType">Problem Type: {problem.problem_type}</span>
+                    <p><span id="EditorProblemType"><strong>Problem Type:</strong> {problem.problem_type}</span></p>
+                    <p><span id="EditorProblemDifficulty"><strong>Difficulty:</strong> {problem.difficulty}</span></p>
                     <br/>
-                    <span id="EditorProblemDifficulty">Difficulty: {problem.difficulty}</span>
-                    <br/>
-                    <span id="EditorSubmittedBy">Submitted by: {problem.user}</span>
+                    <span id="EditorSubmittedBy"><small>Submitted by: {problem.user}</small></span>
                 </div>
             );
         }
