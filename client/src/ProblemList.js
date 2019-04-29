@@ -37,21 +37,23 @@ class ProblemList extends Component {
             );
             */
             var prob_des = this.state.problems.map((problem,i) =>
-                <li className="prob_desc" key = {i}>
-                    <div className="one_problem">
-                        <span className="prob_title"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span>
-                        <span className="prob_type">{problem.problem_type}</span>
-                        <span className="prob_difficulty">{problem.difficulty}</span>
-                        <span className="prob_user">{problem.user}</span>
-                    </div>
-                </li>
+                <tr className="prob_desc" key = {i}>
+                        <td><span className="prob_title"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span></td>
+                        <td><span className="prob_type">{problem.problem_type}</span></td>
+                        <td><span className="prob_difficulty">{problem.difficulty}</span></td>
+                        <td><span className="prob_user">{problem.user}</span></td>
+                </tr>
             );
             return (
-                <div className="ProblemList">
-                    <ul>
-                        {prob_des}
-                    </ul>
-                </div>
+                <table id = "customers">
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Difficulty</th>
+                    <th>User</th>
+                </tr>
+                    {prob_des}
+                </table>
             )
         } else {
             return (

@@ -327,6 +327,29 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   color: blue;
 }
 
+#customers {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #eafff5;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 50px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
 .one_problem {
   display: block;
   border: 0px solid red;
