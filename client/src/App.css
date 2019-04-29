@@ -352,7 +352,6 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 
 .prob_user {
   display: block;
-  float: right;
   color: blue;
 }
 
@@ -369,7 +368,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 
 #customers tr:nth-child(even){background-color: #eafff5;}
 
-#customers tr:hover {background-color: #ddd;}
+#customers tr:hover {background-color: #eee;}
 
 #customers th {
   padding-top: 50px;
