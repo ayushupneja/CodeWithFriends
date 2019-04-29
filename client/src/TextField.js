@@ -71,7 +71,7 @@ class TextField extends Component {
                                 this.setState({text : prob[0].function_definition})
                                 //console.log(prob[0].function_definition)
                             }
-                           
+
                         }
                     )
             }
@@ -79,7 +79,7 @@ class TextField extends Component {
                 console.log('whoops')
         })
     }
- 
+
     componentDidMount() {
         document.getElementById('EditArea').addEventListener('input', this.handleChange);
         this.fetchFriends();
@@ -132,7 +132,7 @@ class TextField extends Component {
                     document.getElementById('TextField').innerHTML = this.state.text;
                 }
             }
-        
+
     }
     */
 
@@ -165,7 +165,7 @@ class TextField extends Component {
             selection.addRange(range);//make the range you have just created the visible selection
         }
         else if(document.selection)//IE 8 and lower
-        { 
+        {
             range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
             range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
             range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
@@ -187,7 +187,7 @@ class TextField extends Component {
     */
 
     handleSubmission() {
-        
+
         fetch('http://localhost:5000/submissions', {
             method: 'POST',
             headers: {
@@ -206,7 +206,7 @@ class TextField extends Component {
             .then((response) => {
                 if (response.status === 200) {
                     response.json()
-                        .then( 
+                        .then(
                             body => {
                                 this.setState({ output : body.output})
                                 if (body.total !== undefined && body.numCorrect !== undefined) {
@@ -215,7 +215,7 @@ class TextField extends Component {
                                     let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
                                     alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n" + message2);
                                 }
-                                
+
                             }
                         );
                 } else {
@@ -249,7 +249,7 @@ class TextField extends Component {
     }
 
     renderFriends() {
-        
+
         if (this.state.doneLoadingFriends === true) {
             return (
                 <div id="Friends">
@@ -261,7 +261,7 @@ class TextField extends Component {
                 </div>
             );
         }
-        
+
     }
 
     renderText() {
@@ -284,6 +284,7 @@ class TextField extends Component {
     render() {
         return (
             <React.Fragment>
+                {this.renderFriends()}
                 {this.renderProblem()}
                 <div id="TextField_And_Button">
                     <div id="Languages">
@@ -291,9 +292,9 @@ class TextField extends Component {
                         <button className="LanguageButton" style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</button>
                         <button className="LanguageButton" style={this.state.language === 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</button>
                     </div>
-                    
+
                    {this.renderText()}
-                    
+
                     <div id="OutputField">
                         Output:
                         <br/>
@@ -306,7 +307,6 @@ class TextField extends Component {
                     <button onClick={this.handleCreateRoom}>Create Room</button>
                     <button id="Run_Button" onClick={this.handleSubmission}>Run</button>
                 </div>
-                {this.renderFriends()}
             </React.Fragment>
         )
     }
