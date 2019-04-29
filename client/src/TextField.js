@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Friend from './Friend';
-
 import Swal from 'sweetalert2';
 
 const activeButton = {
