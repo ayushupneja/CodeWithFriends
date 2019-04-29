@@ -130,13 +130,16 @@ class App extends Component {
             avgTypingDelay = {100}
             startDelay = {1500}
             cursor = {{show: false}}>
+            <h1>Code.</h1>
+            <Typist.Backspace count={5} delay={1500} />
+            <Typist.Delay ms={500} />
             <h1>Collaborate.</h1>
-            <Typist.Backspace count={12} delay={2000} />
+            <Typist.Backspace count={12} delay={1500} />
             <Typist.Delay ms={500} />
             <h1>Compete.</h1>
-            <Typist.Backspace count={8} delay={2000} />
+            <Typist.Backspace count={8} delay={1500} />
             <Typist.Delay ms={500} />
-            <h1>Code with Friends.</h1>
+            <h1>Hackstitute.</h1>
           </Typist>
 
         </div>
