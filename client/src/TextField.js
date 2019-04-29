@@ -240,8 +240,8 @@ class TextField extends Component {
         if (this.state.doneLoadingProblems === true) {
             let problem = this.state.problem[0]
             return (
-                <div id="EditorProblem">
-                    <h1>{problem.title}</h1>
+                <div id="EditorProblem2">
+                    <h3>{problem.title}</h3>
                     <p><em><span id="EditorProblemDescription">{problem.description}</span></em></p>
                     <br/>
                     <p><span id="EditorProblemType"><strong>Problem Type:</strong> {problem.problem_type}</span></p>
@@ -292,9 +292,9 @@ class TextField extends Component {
 
 
             <React.Fragment>
-                {this.renderFriends()}
+                {/*this.renderFriends()*/}
                 {this.renderProblem()}
-                <div id="TextField_And_Button">
+                <div id="TextField_And_Button2">
                     <div id="Languages">
                         <DropdownButton id="dropdown-basic-button" title="Language">
                             <Dropdown.Item style={this.state.language === 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</Dropdown.Item>
