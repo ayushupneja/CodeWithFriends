@@ -170,7 +170,14 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 }
 
 #EditorProblem {
-  margin: 75px auto 75px auto;
+  margin: 25px auto 25px auto;
+  width: 30%;
+  border-width: 1px;
+  border-color: #797979;
+  border-style: solid;
+  border-radius: 1%;
+  padding: 10px;
+
 }
 
 #login p {
@@ -272,7 +279,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   margin: 100px auto 0px auto;
   height: 10vh;
   width: 40%;
-  background-color: blue;
+  background-color: #eafff5;
 }
 
 #Languages {
