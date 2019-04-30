@@ -5,6 +5,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from'react-bootstrap/Button';
 import SideProbList from './SideProbList.js'
+import { Preloader, Placeholder } from 'react-preloading-screen';
+
 const activeButton = {
     border: 'solid',
     borderWidth: '1px',
