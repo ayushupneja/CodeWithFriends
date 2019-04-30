@@ -21,9 +21,10 @@ class Navbar extends Component {
                 <button id="sign_up" onClick={() => this.props.changeView('signing_up')}>Sign Up</button>
             </div>
             */}
-                <button id="home" onClick={() => window.location.replace('./home')}>Home</button>
-                <button id="log_in" onClick={() => window.location.replace('./login')}>Log In</button>
+                <span id="CodeWithFriends">Code with Friends</span>
                 <button id="sign_up" onClick={() => window.location.replace('./signup')}>Sign Up</button>
+                <button id="log_in" onClick={() => window.location.replace('./login')}>Log In</button>
+                <button id="home" onClick={() => window.location.replace('./home')}>Home</button>
             </div>
             </span>
         )
@@ -40,10 +41,11 @@ class Navbar extends Component {
     renderPostLogin() {
         return (
             <div id="navbar">
-                <button id="editor" onClick={() => this.changeURL('/editor')}>Editor</button>
-                <button id="problems" onClick={() => this.changeURL('/problems')}>Problems</button>
-                <button id="user" onClick={() => this.changeURL('/user_page')}>{this.props.username}</button>
+                <span id="CodeWithFriends">Code with Friends</span>
                 <button id="logout" onClick={this.props.logout}>Log Out</button>
+                <button id="user" onClick={() => this.changeURL('/user_page')}>{this.props.username}</button>
+                <button id="problems" onClick={() => this.changeURL('/problems')}>Problems</button>
+                <button id="editor" onClick={() => this.changeURL('/editor')}>Editor</button>
             </div>
         )
     }

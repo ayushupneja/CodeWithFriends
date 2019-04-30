@@ -71,11 +71,15 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   left: 0;
   background-color: #007BFF;
   height: 40px;
-  text-align: right;
 }
 
 .title {
   font-size: 5em;
+}
+
+#CodeWithFriends {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  font-size:28px;
 }
 
 #navbar button {
@@ -83,7 +87,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   margin-bottom: auto;
   text-align: center;
   position: relative;
-  display: inline-block;
+  display: block;
   background-color:rgba(0,0,0,0);
   color: #ffffff;
   margin-right: 1.5%;
@@ -92,6 +96,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   cursor: pointer;
   padding: 0;
   border: none;
+  float: right;
 }
 
 #navbar button:hover {
@@ -144,10 +149,12 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   border-right: 1px solid black;
   border-top: none;
   border-bottom: none;
-
   background-color: white;
   color: black;
 }
+
+#dropdown-basic-button:focus {box-shadow: none;}
+
 
 #registration .successtext {
   text-align: center;
@@ -341,6 +348,7 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   position: fixed;
   top: 40px;
   border-left: 1px solid #ccccff;
+  z-index: 5;
 }
 
 .LanguageButton {
