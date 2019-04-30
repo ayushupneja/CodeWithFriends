@@ -8,6 +8,7 @@ import ProblemList from './ProblemList';
 import Navbar from './Navbar';
 import Friends from './Friends';
 import Typist from 'react-typist'
+import { Preloader, Placeholder } from 'react-preloading-screen';
 
 
 class App extends Component {
@@ -21,7 +22,6 @@ class App extends Component {
     console.log(lastState);
     console.log(localStorage.getItem("test"));
     var view = 'home';
-
     if (path !== '/') {
       if (path.indexOf('/',1) === -1) {
         view = path.substring(1);
@@ -116,6 +116,12 @@ class App extends Component {
     if (this.state.view === 'home')
       return (
         <div>
+        <Preloader>
+          <Placeholder>
+              <span>
+              </span>
+          </Placeholder>
+        </Preloader>
         <br />
         <br />
         <br />
@@ -123,7 +129,7 @@ class App extends Component {
         <br/>
         <br/>
         <div id="sign_in">
-        
+
           <Typist
             avgTypingDelay = {100}
             startDelay = {1500}
