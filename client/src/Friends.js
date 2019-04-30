@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import FriendRequest from './FriendRequest';
 import Friend from './Friend';
+import { Preloader, Placeholder } from 'react-preloading-screen';
+
 
 class Friends extends Component {
     constructor(props) {
