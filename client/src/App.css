@@ -496,3 +496,56 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   }
 }
 
+#post_problem {
+  display: block;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#postProblemForm {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #eaf9ff;
+  border: solid 1px #99e6ff;  
+  padding: 20px 40px 20px 40px;
+  border-radius: 2%;
+  margin-top: 70px;
+}
+
+.formInput {
+  padding: 0px;
+  width: 100%;
+  display: block;
+}
+
+.formDescription {
+  width: 100%;
+  height: 100px;
+  display: block;
+}
+
+.alertText {
+  height: 1em;
+  text-align: right;
+  font-size: .9em;
+  font-style: italic;
+  color: red;
+  padding-right: 5px;
+}
+
+#browsingText {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+#browsingButton {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}

@@ -57,7 +57,7 @@ class Navbar extends Component {
                     {this.renderPreLogin()}
                 </React.Fragment>
             );
-        } else if (this.props.view === 'editor' || this.props.view === 'problems' || this.props.view === 'user_page') {
+        } else if (this.props.view === 'editor' || this.props.view === 'problems' || this.props.view === 'user_page' || this.props.view === 'newProblem') {
             return (
                 <React.Fragment>
                     {this.renderPostLogin()}

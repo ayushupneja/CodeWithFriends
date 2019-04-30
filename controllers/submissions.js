@@ -36,6 +36,7 @@ writeFiles = function(req,res,identifier,language) {
     let code = declaration + '{' + req.body.submission + '}'
     fs.writeFile('./submissions/' + identifier + '.' + language, code, function(err) {
         if(err) {
+            console.log("HELLLLLOOOOO" + err)
             res.send(err);
         }
     })
@@ -43,6 +44,7 @@ writeFiles = function(req,res,identifier,language) {
     if (language === "cpp" || language === "c") {
         fs.writeFile('./submissions/' + identifier + '.h', declaration + ';', function(err) {
             if(err) {
+                console.log('HELl22222222OOOO' + err)
                 res.send(err);
             }
         })
@@ -107,6 +109,7 @@ compileFiles = function(req, res, identifier, language) {
                             }
                         })
                 }
+                console.log("asdfasdfasdfasdfasdfasdfasdfasdf")
                 res.json({
                     output: stdout,
                     total: total,

@@ -7,6 +7,7 @@ import TextField from './TextField';
 import ProblemList from './ProblemList';
 import Navbar from './Navbar';
 import Friends from './Friends';
+import NewProblem from './NewProblem'
 import Typist from 'react-typist'
 
 
@@ -66,6 +67,7 @@ class App extends Component {
     this.changeView = this.changeView.bind(this);
     this.renderBody = this.renderBody.bind(this);
     this.finishLogin = this.finishLogin.bind(this);
+    this.changeURL = this.changeURL.bind(this);
   }
 
   handleEditor() {
@@ -111,6 +113,14 @@ class App extends Component {
         }
       })
   }
+
+  changeURL(newPath) {
+    var url = new URL(window.location.toString())
+    var pathname = url.pathname;
+    var newURL = window.location.toString().replace(pathname,newPath)
+    console.log(newURL)
+    window.location.href = newURL;
+}
 
   renderBody() {
     if (this.state.view === 'home')
@@ -163,12 +173,22 @@ class App extends Component {
       );
     if (this.state.view === 'problems')
       return (
-        <ProblemList/>
+        <React.Fragment>
+          <ProblemList/>
+          <div id="post_problem_div">
+            <button type="button" id="post_problem" className="btn btn-primary btn-lg" onClick={() => this.changeURL('/newProblem')}>Post a problem</button>
+          </div>
+        </React.Fragment>
+
       );
     if (this.state.view === 'user_page')
       return (
         <Friends username={this.state.username}/>
       );
+    if (this.state.view === 'newProblem')
+        return (
+          <NewProblem username={this.state.username}></NewProblem>
+        )
   }
 
   render() {

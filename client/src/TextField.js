@@ -212,10 +212,10 @@ class TextField extends Component {
                     response.json()
                         .then(
                             body => {
+                                console.log("Body" + body.output);
                                 this.setState({ output : body.output})
                                 if (body.total !== undefined && body.numCorrect !== undefined) {
                                     let message = body.total === body.numCorrect ? "Passed" : "Failed";
-                                    console.log(body);
                                     let message2 = body.total === body.numCorrect ? "Score: " + body.score : "";
                                     //alert("Correct: " + body.numCorrect + "\nTotal: " + body.total + "\n" + message + "\n" + message2);
                                     Swal.fire(
@@ -291,6 +291,7 @@ class TextField extends Component {
     }
 
     render() {
+        let language = this.state.language === 'c' ? 'C' : this.state.language === 'cpp' ? 'C++' : 'Python';
         return (
             
 
@@ -299,7 +300,7 @@ class TextField extends Component {
                 {/*this.renderFriends()*/}
                 {this.renderProblem()}
                 <div id="newLanguages">
-                        <DropdownButton id="dropdown-basic-button" title="Language">
+                        <DropdownButton id="dropdown-basic-button" title={language}>
                             <Dropdown.Item style={this.state.language === 'c' ? activeButton : null} onClick={() => this.changeLanguage('c')}>C</Dropdown.Item>
                             <Dropdown.Item style={this.state.language === 'cpp' ? activeButton : null} onClick={() => this.changeLanguage('cpp')}>C++</Dropdown.Item>
                             <Dropdown.Item style={this.state.language === 'py' ? activeButton : null} onClick={() => this.changeLanguage('py')}>Python</Dropdown.Item>
