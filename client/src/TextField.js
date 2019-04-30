@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from'react-bootstrap/Button';
-
+import SideProbList from './SideProbList.js'
 const activeButton = {
     border: 'solid',
     borderWidth: '1px',
@@ -254,11 +254,18 @@ class TextField extends Component {
                     <span id="EditorSubmittedBy"><small>Submitted by: {problem.user}</small></span>
                 </div>
             );
+        } else {
+          return (
+            <div id="EditorProblem2">
+            <br />
+            <p><em><span id="EditorProblemDescription">&nbsp;&nbsp;&nbsp;Consider hacking away at one of our favorite problems!</span></em></p>
+            <SideProbList></SideProbList>
+            </div>
+          );
         }
     }
 
     renderFriends() {
-
         if (this.state.doneLoadingFriends === true) {
             return (
                 <div id="Friends">
@@ -292,7 +299,7 @@ class TextField extends Component {
 
     render() {
         return (
-            
+
 
 
             <React.Fragment>
@@ -311,7 +318,7 @@ class TextField extends Component {
                     */}
                 </div>
                 <div id="TextField_And_Button2">
-                
+
                    {this.renderText()}
                     <div id="OutputArea">
                         <div id="OutputLine">
