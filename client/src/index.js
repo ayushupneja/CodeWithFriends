@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Preloader, Placeholder } from 'react-preloading-screen';
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
