@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Preloader, Placeholder } from 'react-preloading-screen';
 
 class Login extends Component {
     constructor(props) {
@@ -63,6 +64,12 @@ class Login extends Component {
         if (this.state.failed === false) {
             return (
                 <div id="login">
+                <Preloader>
+                  <Placeholder>
+                      <span>
+                      </span>
+                  </Placeholder>
+                </Preloader>
                     <form onSubmit={() => {return false;}}>
                           <br/>
                           <br/>
@@ -80,6 +87,12 @@ class Login extends Component {
         } else {
             return (
                  <div id="login">
+                 <Preloader>
+                   <Placeholder>
+                       <span>
+                       </span>
+                   </Placeholder>
+                 </Preloader>
                     <p className="failtext">Login Failed. Try again</p>
                         <br/>
                         <form onSubmit={() => {return false;}}>
