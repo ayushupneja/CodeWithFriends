@@ -3,17 +3,15 @@ import './App.css';
 import Swal from 'sweetalert2';
 import { Preloader, Placeholder } from 'react-preloading-screen';
 
-
 //import ReactDOM from 'react-dom'
 
-class ProblemList extends Component {
+class SideProbList extends Component {
     constructor() {
         super();
         this.state = {
             problems: [],
             doneLoading: false
         }
-        this.loadLeaderBoard = this.loadLeaderBoard.bind(this);
     }
 
     componentDidMount() {
@@ -34,36 +32,6 @@ class ProblemList extends Component {
             })
     }
 
-    loadLeaderBoard = function(title) {
-        fetch('http://localhost:5000/getProblem', {
-            method: 'POST',
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify({title: title}),
-            mode: 'cors'
-        })
-        .then((response)=> {
-            if (response.status === 200) {
-                response.json()
-                    .then(
-                        prob => {
-                            let leaderboard = prob[0].leader_board;
-                            let leaderboard_string = "";
-                            console.log(leaderboard)
-                            leaderboard.forEach((entry) => {
-                                leaderboard_string = `${leaderboard_string}<span className="entry">${entry.score} by ${entry.user}</span><br/>`
-                            })
-                            Swal.fire({
-                                title: 'Leaderboard',
-                                html: leaderboard_string
-                            })
-                        }
-                    )
-            }
-        })
-    }
 
     render() {
         if (this.state.doneLoading === true) {
@@ -73,12 +41,11 @@ class ProblemList extends Component {
             );
             */
             var prob_des = this.state.problems.map((problem,i) =>
+
                 <tr className="prob_desc" key = {i}>
                         <td><span className="prob_title"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span></td>
                         <td><span className="prob_type">{problem.problem_type}</span></td>
-                        <td><span className="prob_difficulty">{problem.difficulty}</span></td>
-                        <td><span className="prob_user">{problem.user}</span></td>
-                        <td><span className="leaderboard" onClick={() => this.loadLeaderBoard(problem.title)}>View Leaderboard</span></td>
+                        <td><span className="prob_difficulty"><span style={problem.difficulty === 'easy' ? {color: 'green'} : problem.difficulty === 'medium' ? {color: 'yellow'} : {color : 'red'}}>{problem.difficulty}</span></span></td>
                 </tr>
             );
             return (
@@ -89,15 +56,8 @@ class ProblemList extends Component {
                     </span>
                 </Placeholder>
               </Preloader>
-                <table id = "customers">
+                <table id = "customers2">
                     <tbody>
-                        <tr>
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Difficulty</th>
-                            <th>User</th>
-                            <th>Leaderboard</th>
-                        </tr>
                         {prob_des}
                     </tbody>
                 </table>
@@ -110,4 +70,4 @@ class ProblemList extends Component {
         }
     }
 }
-export default ProblemList;
+export default SideProbList;

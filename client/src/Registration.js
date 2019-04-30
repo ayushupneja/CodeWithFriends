@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Preloader, Placeholder } from 'react-preloading-screen';
+
 
 class Registration extends Component {
     constructor() {
@@ -56,6 +58,12 @@ class Registration extends Component {
             if (this.state.taken === false)
             return (
                 <div id="registration">
+                <Preloader>
+                  <Placeholder>
+                      <span>
+                      </span>
+                  </Placeholder>
+                </Preloader>
                     <form onSubmit={() => {return false;}}>
                         <br/>
 
