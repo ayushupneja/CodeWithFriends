@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Swal from 'sweetalert2';
+import { Preloader, Placeholder } from 'react-preloading-screen';
 
 //import ReactDOM from 'react-dom'
 
@@ -48,11 +49,19 @@ class SideProbList extends Component {
                 </tr>
             );
             return (
+              <div>
+              <Preloader>
+                <Placeholder>
+                    <span>
+                    </span>
+                </Placeholder>
+              </Preloader>
                 <table id = "customers2">
                     <tbody>
                         {prob_des}
                     </tbody>
                 </table>
+              </div>
             )
         } else {
             return (
