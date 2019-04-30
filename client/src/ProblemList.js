@@ -51,7 +51,7 @@ class ProblemList extends Component {
                             let leaderboard_string = "";
                             console.log(leaderboard)
                             leaderboard.forEach((entry) => {
-                                leaderboard_string = leaderboard_string + '<span className="entry">' + entry.score + " by " + entry.user + '</span>' + "<br/>";
+                                leaderboard_string = `${leaderboard_string}<span className="entry">${entry.score} by ${entry.user}</span><br/>`
                             })
                             Swal.fire({
                                 title: 'Leaderboard',

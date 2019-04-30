@@ -72,7 +72,7 @@ class Login extends Component {
                           <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange} min = "6" required/>
                           <br/>
                           <div id = "sign_in">
-                            <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Log In</button>
+                            <button type="button" onClick={this.handleSubmit}className="btn btn-primary btn-lg">Log In</button>
                           </div>
                     </form>
                 </div>
@@ -91,7 +91,7 @@ class Login extends Component {
                         <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange} min = "6" required/>
                         <br/>
                         <div id = "sign_in">
-                          <button type="button" onClick={this.handleSubmit}class="btn btn-primary btn-lg">Log In</button>
+                          <button type="button" onClick={this.handleSubmit}className="btn btn-primary btn-lg">Log In</button>
                         </div>
                     </form>
                 </div>

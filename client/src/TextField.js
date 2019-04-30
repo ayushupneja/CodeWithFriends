@@ -240,7 +240,7 @@ class TextField extends Component {
         console.log(this.state.text)
         if (this.state.doneLoadingProblems === true) {
             let problem = this.state.problem[0]
-            let diff_style = problem.difficulty == 'easy' ? {color: 'green'} : problem.difficulty == 'medium' ? {color: 'yellow'} : {color : 'red'};
+            let diff_style = problem.difficulty === 'easy' ? {color: 'green'} : problem.difficulty === 'medium' ? {color: 'yellow'} : {color : 'red'};
             return (
                 <div id="EditorProblem2">
                     <h3 id="EditorProblemTitle">{problem.title}</h3>

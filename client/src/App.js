@@ -145,7 +145,7 @@ class App extends Component {
         <br/>
         <br/>
         <div id = "sign_in">
-          <button type="button" id="create_acc" class="btn btn-primary btn-lg" onClick={() => window.location.replace('./signup')}>Create Account</button>
+          <button type="button" id="create_acc" className="btn btn-primary btn-lg" onClick={() => window.location.replace('./signup')}>Create Account</button>
         </div>
         </div>
       );

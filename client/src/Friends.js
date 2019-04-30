@@ -125,6 +125,8 @@ class Friends extends Component {
                     {this.state.requests.map( (r,i) => {
                         if (r.sender !== this.props.username)
                             return (<FriendRequest key={i} myusername={this.props.username} username={r.sender} requests={this.state.requests} handler={this.handleRequestChange} handler2={this.handleFriendChange}/>)
+                        else
+                            return (null);
                     })}
                     <h2>Friends</h2>
                     {this.state.friends.map( (f,i) => {
