@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Swal from 'sweetalert2';
 import { Preloader, Placeholder } from 'react-preloading-screen';
+import $ from 'jquery';
 
 
 //import ReactDOM from 'react-dom'
@@ -17,6 +18,7 @@ class ProblemList extends Component {
     }
 
     componentDidMount() {
+        $('body').addClass('stop-scrolling')
         fetch("http://localhost:5000/problems", {
             method: 'GET',
             headers: {
@@ -32,6 +34,10 @@ class ProblemList extends Component {
             (error) => {
                 alert(error);
             })
+    }
+
+    componentWillUnmount() {
+        $('body').removeClass('stop-scrolling')
     }
 
     loadLeaderBoard = function(title) {
@@ -72,6 +78,7 @@ class ProblemList extends Component {
                 <li className="prob_desc" key={i}>{problem.description} submitted by {problem.user}</li>
             );
             */
+           /*
             var prob_des = this.state.problems.map((problem,i) =>
                 <tr className="prob_desc" key = {i}>
                         <td><span className="prob_title"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span></td>
@@ -80,18 +87,34 @@ class ProblemList extends Component {
                         <td><span className="prob_user">{problem.user}</span></td>
                         <td><span className="leaderboard" onClick={() => this.loadLeaderBoard(problem.title)}>View Leaderboard</span></td>
                 </tr>
+                
             );
+            */
+
+           var prob_des = this.state.problems.map((problem,i) =>
+                <div className="probRow" key={i}>
+                    <span className="prob_title"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span>
+                    <span className="prob_type">{problem.problem_type}</span>
+                    <span className="prob_difficulty"><span className={problem.difficulty === 'easy' ? 'green' : problem.difficulty === 'medium' ? 'yellow' : 'red'}>{problem.difficulty}</span></span>
+                    <span className="prob_user">{problem.user}</span>
+                    <span className="leaderboard" onClick={() => this.loadLeaderBoard(problem.title)}><span className="lb_text">View Leaderboard</span></span>
+                </div>
+           );
+
+
+
             return (
-              <div>
+              <div id="notNav">
               <Preloader>
                 <Placeholder>
                     <span>
                     </span>
                 </Placeholder>
               </Preloader>
+              {/*
                 <table id = "customers">
                     <tbody>
-                        <tr>
+                        <tr id="problemListHeaders">
                             <th>Title</th>
                             <th>Type</th>
                             <th>Difficulty</th>
@@ -101,6 +124,23 @@ class ProblemList extends Component {
                         {prob_des}
                     </tbody>
                 </table>
+              */}
+              <div id="search">
+                Search Area
+              </div>
+              <div id="problemsList">
+                <div id="probHeader">
+                    <span id="title_header" className="pt_text">Problem Title</span>
+                    <span id="type_header">Type</span>
+                    <span id="difficulty_header">Difficulty</span>
+                    <span id="user_header">Submitted by</span>
+                    <span id="leaderboard_header"><span className="lb_text">Leaderboard</span></span>
+
+                </div>
+                <div id="actualProbs">
+                    {prob_des}
+                </div>
+              </div>
               </div>
             )
         } else {

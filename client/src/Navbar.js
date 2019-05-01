@@ -49,12 +49,14 @@ class Navbar extends Component {
     renderPostLogin() {
         return (
             <div id="navbar">
+            
             <Preloader>
               <Placeholder>
                   <span>
                   </span>
               </Placeholder>
             </Preloader>
+            
                 <span id="CodeWithFriends">Code with Friends</span>
                 <button id="logout" onClick={this.props.logout}>Log Out</button>
                 <button id="user" onClick={() => this.changeURL('/user_page')}>{this.props.username}</button>

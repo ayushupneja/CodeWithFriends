@@ -181,9 +181,13 @@ class App extends Component {
       return (
         <React.Fragment>
           <ProblemList/>
+         
+
+          {/*
           <div id="post_problem_div">
             <button type="button" id="post_problem" className="btn btn-primary btn-lg" onClick={() => this.changeURL('/newProblem')}>Post a problem</button>
           </div>
+          */}
         </React.Fragment>
 
       );

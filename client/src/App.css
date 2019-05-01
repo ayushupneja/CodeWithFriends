@@ -267,12 +267,6 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   position: absolute;
 }
 
-#customers {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
@@ -444,15 +438,12 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   float: right;
 }
 
-.prob_user {
-  display: block;
-  color: #007BFF;
-}
-
 #customers {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   border-collapse: collapse;
   width: 100%;
+  height: 200px;
+  overflow-y: auto;
 }
 
 #customers td, #customers th {
@@ -496,6 +487,12 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 .leaderboard {
   cursor: pointer;
   color: #007BFF;
+  text-align: center;
+  width: 15%;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .leaderboard:hover {
@@ -519,11 +516,13 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
 
 #post_problem {
   display: block;
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  height: 50px;
+  width: 180px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  float: right;
+  
 }
 
 #postProblemForm {
@@ -569,4 +568,152 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+#problemsList {
+  margin-left: 300px;
+  position: absolute;
+  width: calc(100% - 300px);
+  border-bottom: 10px solid #404040;
+  border-left: 3px solid #404040;
+  border-bottom-left-radius: .5%;
+}
+
+.prob_title {
+  width: 44%;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prob_type {
+  width: 8%;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prob_difficulty {
+  width: 11%;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prob_user {
+  width: 22%;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#search {
+  float: left;
+  width:300px;
+  height: calc(100vh - 100px);
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.probRow {
+  border-top: 1px solid grey;
+  background-color: #f8f8f8;
+  white-space: nowrap;
+}
+
+#probHeader {
+  z-index: 5;
+  height: 30px;
+  background-color: #404040;
+}
+
+#title_header {
+  width: 44%;
+  color: #f8f8f8;
+  font-size: 1.2em;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#type_header {
+  width: 8%;
+  color: #f8f8f8;
+  font-size: 1.2em;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#difficulty_header {
+  width: 11%;
+  color: #f8f8f8;
+  font-size: 1.2em;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#user_header {
+  width: 22%;
+  font-size: 1.2em;
+  color: #f8f8f8;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+#leaderboard_header {
+  font-size: 1.2em;
+  color: #f8f8f8;
+  width: 15%;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: #ffcc00;
+}
+
+.lb_text {
+  display: block;
+  text-align: center;
+}
+
+.pt_text {
+  display: block;
+  text-align: center;
+}
+
+#notNav {
+  position: relative;
+  margin-top: 40px;
+}
+
+#actualProbs {
+  overflow-y: auto;
+  position: relative;
+  height: calc(100vh - 80px)
 }
