@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import { Preloader, Placeholder } from 'react-preloading-screen';
-
+import Typist from 'react-typist'
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            cursor: false
+        }
         this.renderPreLogin = this.renderPreLogin.bind(this);
         this.renderPostLogin = this.renderPostLogin.bind(this);
         this.changeURL = this.changeURL.bind(this);
+        this.renderCursor = this.renderCursor.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.view !== 'home')
+            this.interval = setInterval(() => this.setState({ cursor: !this.state.cursor }), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    renderCursor() {
+        if (this.state.cursor === true)
+            return <img src={require("./cursor.png")} id="cursor"></img>
+        else
+            return (null);
     }
 
     renderPreLogin() {
@@ -29,7 +49,13 @@ class Navbar extends Component {
                 <button id="sign_up" onClick={() => this.props.changeView('signing_up')}>Sign Up</button>
             </div>
             */}
-                <span id="CodeWithFriends">Code with Friends</span>
+                <span id="CodeWithFriends">
+                    Code with Friends
+                </span>
+                {this.renderCursor()}
+
+
+                
                 <button id="sign_up" onClick={() => window.location.replace('./signup')}>Sign Up</button>
                 <button id="log_in" onClick={() => window.location.replace('./login')}>Log In</button>
                 <button id="home" onClick={() => window.location.replace('./home')}>Home</button>

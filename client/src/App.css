@@ -717,3 +717,10 @@ html, body { height: 100%; width: 100%; margin: 0; background-image: project-12-
   position: relative;
   height: calc(100vh - 80px)
 }
+
+#cursor {
+  height: 25px;
+  top: 7px;
+  left: 276px;
+  position: absolute;
+}
