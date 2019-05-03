@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Preloader, Placeholder } from 'react-preloading-screen';
 
 
 class Friend extends Component {

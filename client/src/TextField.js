@@ -259,8 +259,7 @@ class TextField extends Component {
         } else {
           return (
             <div id="EditorProblem2">
-            <br />
-            <p><em><span id="EditorProblemDescription">&nbsp;&nbsp;&nbsp;Consider hacking away at one of our favorite problems!</span></em></p>
+            <span id="EditorProblemDescription">&nbsp;&nbsp;&nbsp;Check out some of our problems</span>
             <SideProbList></SideProbList>
             </div>
           );

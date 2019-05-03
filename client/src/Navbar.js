@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Preloader, Placeholder } from 'react-preloading-screen';
-import Typist from 'react-typist'
 
 class Navbar extends Component {
     constructor(props) {
@@ -25,9 +24,17 @@ class Navbar extends Component {
 
     renderCursor() {
         if (this.state.cursor === true)
-            return <img src={require("./cursor.png")} id="cursor"></img>
+            return (
+                <span id="CodeWithFriends">
+                    CodeWithFriends.
+                </span>
+            )
         else
-            return (null);
+            return (
+                <span id="CodeWithFriends">
+                    CodeWithFriends
+                </span>
+            )
     }
 
     renderPreLogin() {
@@ -49,9 +56,6 @@ class Navbar extends Component {
                 <button id="sign_up" onClick={() => this.props.changeView('signing_up')}>Sign Up</button>
             </div>
             */}
-                <span id="CodeWithFriends">
-                    Code with Friends
-                </span>
                 {this.renderCursor()}
 
 
@@ -83,7 +87,7 @@ class Navbar extends Component {
               </Placeholder>
             </Preloader>
             
-                <span id="CodeWithFriends">Code with Friends</span>
+                {this.renderCursor()}
                 <button id="logout" onClick={this.props.logout}>Log Out</button>
                 <button id="user" onClick={() => this.changeURL('/user_page')}>{this.props.username}</button>
                 <button id="problems" onClick={() => this.changeURL('/problems')}>Problems</button>

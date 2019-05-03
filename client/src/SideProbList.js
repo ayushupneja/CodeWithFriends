@@ -41,26 +41,36 @@ class SideProbList extends Component {
             );
             */
             var prob_des = this.state.problems.map((problem,i) =>
+                <div className="sideProbRow" key={i}>
+                    <span className="sideProbTitle"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span>
+                    <span className="sideProbType">{problem.problem_type}</span>
+                    <span className="sideProbDifficulty"><span style={problem.difficulty === 'easy' ? {color: 'green'} : problem.difficulty === 'medium' ? {color: 'yellow'} : {color : 'red'}}>{problem.difficulty}</span></span>
+                </div>
 
-                <tr className="prob_desc" key = {i}>
-                        <td><span className="prob_title"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span></td>
-                        <td><span className="prob_type">{problem.problem_type}</span></td>
-                        <td><span className="prob_difficulty"><span style={problem.difficulty === 'easy' ? {color: 'green'} : problem.difficulty === 'medium' ? {color: 'yellow'} : {color : 'red'}}>{problem.difficulty}</span></span></td>
+            /*
+                <tr className="sideProbDesc" key = {i}>
+                        <td><span className="sideProbTitle"><a href={"/editor/" + problem.title.split(' ').join('+')}>{problem.title}</a></span></td>
+                        <td><span className="sideProbType">{problem.problem_type}</span></td>
+                        <td><span className="sideProbDifficulty"><span style={problem.difficulty === 'easy' ? {color: 'green'} : problem.difficulty === 'medium' ? {color: 'yellow'} : {color : 'red'}}>{problem.difficulty}</span></span></td>
                 </tr>
+            */
             );
             return (
-              <div>
+              <div id="sideThing">
               <Preloader>
                 <Placeholder>
                     <span>
                     </span>
                 </Placeholder>
               </Preloader>
+              {/*
                 <table id = "customers2">
                     <tbody>
                         {prob_des}
                     </tbody>
                 </table>
+              */}
+                {prob_des}
               </div>
             )
         } else {
